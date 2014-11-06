@@ -593,7 +593,7 @@ Public Class Main
         System.Diagnostics.Process.Start("http://gib.me/sam/")
     End Sub
     Private Sub LinkLabelGithub_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabelGtihub.LinkClicked
-        System.Diagnostics.Process.Start("https://github.com/neverweep/SteamTradingCardsFarmer")
+        System.Diagnostics.Process.Start("http://github.com/neverweep/SteamTradingCardsFarmer")
     End Sub
     Private Sub LinkLabelDownload_LinkClicked_1(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabelDownload.LinkClicked
         System.Diagnostics.Process.Start("https://github.com/neverweep/SteamTradingCardsFarmer/raw/master/SteamTradingCardsFarmer/bin/Debug/SteamTradingCardsFarmer.exe")

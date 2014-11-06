@@ -57,6 +57,7 @@ Partial Class Main
         Me.ColDrop = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ColTotal = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TabPageAbout = New System.Windows.Forms.TabPage()
+        Me.LinkLabelDownload = New System.Windows.Forms.LinkLabel()
         Me.LabelGithub = New System.Windows.Forms.Label()
         Me.LinkLabelGtihub = New System.Windows.Forms.LinkLabel()
         Me.LabelSAM = New System.Windows.Forms.Label()
@@ -75,7 +76,6 @@ Partial Class Main
         Me.TimerForProfile = New System.Windows.Forms.Timer(Me.components)
         Me.NotifyIconMain = New System.Windows.Forms.NotifyIcon(Me.components)
         Me.CheckBoxWebListener = New System.Windows.Forms.CheckBox()
-        Me.LinkLabelDownload = New System.Windows.Forms.LinkLabel()
         Me.Form1BindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.TabControlMain.SuspendLayout()
         Me.TabPageHome.SuspendLayout()
@@ -319,6 +319,12 @@ Partial Class Main
         Me.TabPageAbout.Name = "TabPageAbout"
         Me.TabPageAbout.UseVisualStyleBackColor = True
         '
+        'LinkLabelDownload
+        '
+        resources.ApplyResources(Me.LinkLabelDownload, "LinkLabelDownload")
+        Me.LinkLabelDownload.Name = "LinkLabelDownload"
+        Me.LinkLabelDownload.TabStop = True
+        '
         'LabelGithub
         '
         resources.ApplyResources(Me.LabelGithub, "LabelGithub")
@@ -448,12 +454,6 @@ Partial Class Main
         resources.ApplyResources(Me.CheckBoxWebListener, "CheckBoxWebListener")
         Me.CheckBoxWebListener.Name = "CheckBoxWebListener"
         Me.CheckBoxWebListener.UseVisualStyleBackColor = True
-        '
-        'LinkLabelDownload
-        '
-        resources.ApplyResources(Me.LinkLabelDownload, "LinkLabelDownload")
-        Me.LinkLabelDownload.Name = "LinkLabelDownload"
-        Me.LinkLabelDownload.TabStop = True
         '
         'Form1BindingSource
         '

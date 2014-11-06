@@ -565,10 +565,10 @@
     <value>4</value>
   </data>
   <data name="GroupBoxInfo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>483, 6</value>
+    <value>480, 6</value>
   </data>
   <data name="GroupBoxInfo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>250, 89</value>
+    <value>253, 89</value>
   </data>
   <data name="GroupBoxInfo.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
@@ -766,13 +766,13 @@
     <value>227, 200</value>
   </data>
   <data name="LinkLabelGtihub.Size" type="System.Drawing.Size, System.Drawing">
-    <value>344, 17</value>
+    <value>338, 17</value>
   </data>
   <data name="LinkLabelGtihub.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
   </data>
   <data name="LinkLabelGtihub.Text" xml:space="preserve">
-    <value>https://github.com/neverweep/SteamTradingCardsFarmer</value>
+    <value>http://github.com/neverweep/SteamTradingCardsFarmer</value>
   </data>
   <data name="&gt;&gt;LinkLabelGtihub.Name" xml:space="preserve">
     <value>LinkLabelGtihub</value>
@@ -1282,9 +1282,6 @@
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=
 </value>
-  </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
   </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterScreen</value>
