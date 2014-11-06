@@ -696,6 +696,96 @@
   <data name="&gt;&gt;TabPageHome.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="LinkLabelDownload.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="LinkLabelDownload.Location" type="System.Drawing.Point, System.Drawing">
+    <value>113, 101</value>
+  </data>
+  <data name="LinkLabelDownload.Size" type="System.Drawing.Size, System.Drawing">
+    <value>506, 17</value>
+  </data>
+  <data name="LinkLabelDownload.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="LinkLabelDownload.Text" xml:space="preserve">
+    <value>Download this program only from Github. NEVER download this from other websites.</value>
+  </data>
+  <data name="LinkLabelDownload.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;LinkLabelDownload.Name" xml:space="preserve">
+    <value>LinkLabelDownload</value>
+  </data>
+  <data name="&gt;&gt;LinkLabelDownload.Type" xml:space="preserve">
+    <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LinkLabelDownload.Parent" xml:space="preserve">
+    <value>TabPageAbout</value>
+  </data>
+  <data name="&gt;&gt;LinkLabelDownload.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="LabelGithub.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="LabelGithub.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="LabelGithub.Location" type="System.Drawing.Point, System.Drawing">
+    <value>27, 200</value>
+  </data>
+  <data name="LabelGithub.Size" type="System.Drawing.Size, System.Drawing">
+    <value>149, 17</value>
+  </data>
+  <data name="LabelGithub.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="LabelGithub.Text" xml:space="preserve">
+    <value>Source Code On Github:</value>
+  </data>
+  <data name="&gt;&gt;LabelGithub.Name" xml:space="preserve">
+    <value>LabelGithub</value>
+  </data>
+  <data name="&gt;&gt;LabelGithub.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LabelGithub.Parent" xml:space="preserve">
+    <value>TabPageAbout</value>
+  </data>
+  <data name="&gt;&gt;LabelGithub.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="LinkLabelGtihub.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="LinkLabelGtihub.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="LinkLabelGtihub.Location" type="System.Drawing.Point, System.Drawing">
+    <value>227, 200</value>
+  </data>
+  <data name="LinkLabelGtihub.Size" type="System.Drawing.Size, System.Drawing">
+    <value>344, 17</value>
+  </data>
+  <data name="LinkLabelGtihub.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="LinkLabelGtihub.Text" xml:space="preserve">
+    <value>https://github.com/neverweep/SteamTradingCardsFarmer</value>
+  </data>
+  <data name="&gt;&gt;LinkLabelGtihub.Name" xml:space="preserve">
+    <value>LinkLabelGtihub</value>
+  </data>
+  <data name="&gt;&gt;LinkLabelGtihub.Type" xml:space="preserve">
+    <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LinkLabelGtihub.Parent" xml:space="preserve">
+    <value>TabPageAbout</value>
+  </data>
+  <data name="&gt;&gt;LinkLabelGtihub.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
   <data name="LabelSAM.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -703,7 +793,7 @@
     <value>NoControl</value>
   </data>
   <data name="LabelSAM.Location" type="System.Drawing.Point, System.Drawing">
-    <value>27, 196</value>
+    <value>27, 226</value>
   </data>
   <data name="LabelSAM.Size" type="System.Drawing.Size, System.Drawing">
     <value>185, 17</value>
@@ -724,7 +814,7 @@
     <value>TabPageAbout</value>
   </data>
   <data name="&gt;&gt;LabelSAM.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>3</value>
   </data>
   <data name="LinkLabelSAM.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -733,7 +823,7 @@
     <value>NoControl</value>
   </data>
   <data name="LinkLabelSAM.Location" type="System.Drawing.Point, System.Drawing">
-    <value>227, 196</value>
+    <value>227, 226</value>
   </data>
   <data name="LinkLabelSAM.Size" type="System.Drawing.Size, System.Drawing">
     <value>118, 17</value>
@@ -754,7 +844,7 @@
     <value>TabPageAbout</value>
   </data>
   <data name="&gt;&gt;LinkLabelSAM.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>4</value>
   </data>
   <data name="LabelBlog.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -784,7 +874,7 @@
     <value>TabPageAbout</value>
   </data>
   <data name="&gt;&gt;LabelBlog.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>5</value>
   </data>
   <data name="LinkLabelBlog.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -814,7 +904,7 @@
     <value>TabPageAbout</value>
   </data>
   <data name="&gt;&gt;LinkLabelBlog.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>6</value>
   </data>
   <data name="LabelDonation.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -823,7 +913,7 @@
     <value>NoControl</value>
   </data>
   <data name="LabelDonation.Location" type="System.Drawing.Point, System.Drawing">
-    <value>27, 172</value>
+    <value>27, 174</value>
   </data>
   <data name="LabelDonation.Size" type="System.Drawing.Size, System.Drawing">
     <value>147, 17</value>
@@ -844,7 +934,7 @@
     <value>TabPageAbout</value>
   </data>
   <data name="&gt;&gt;LabelDonation.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>7</value>
   </data>
   <data name="LinkLabelDonation.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -853,7 +943,7 @@
     <value>NoControl</value>
   </data>
   <data name="LinkLabelDonation.Location" type="System.Drawing.Point, System.Drawing">
-    <value>227, 172</value>
+    <value>227, 174</value>
   </data>
   <data name="LinkLabelDonation.Size" type="System.Drawing.Size, System.Drawing">
     <value>233, 17</value>
@@ -874,7 +964,7 @@
     <value>TabPageAbout</value>
   </data>
   <data name="&gt;&gt;LinkLabelDonation.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>8</value>
   </data>
   <data name="LabelWarning.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -904,7 +994,7 @@
     <value>TabPageAbout</value>
   </data>
   <data name="&gt;&gt;LabelWarning.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>9</value>
   </data>
   <data name="LabelNotice.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -935,7 +1025,7 @@
     <value>TabPageAbout</value>
   </data>
   <data name="&gt;&gt;LabelNotice.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>10</value>
   </data>
   <data name="TabPageAbout.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 29</value>
@@ -1192,6 +1282,9 @@
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=
 </value>
+  </data>
+  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterScreen</value>

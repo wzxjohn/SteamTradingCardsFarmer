@@ -43,6 +43,8 @@ Public Class Language
     Friend dgv_msg As String
     Friend title As String
     Friend webform_loading As String
+    Friend l_github As String
+    Friend ll_download As String
 
     Public Sub init()
         Select Case System.Threading.Thread.CurrentThread.CurrentCulture.ToString()
@@ -89,6 +91,8 @@ Public Class Language
                 dgv_time = "时间"
                 dgv_msg = "消息"
                 webform_loading = "读取个人资料"
+                l_github = "托管在 Github 上的源码："
+                ll_download = "仅在 Github 上下载本程序，不要从其它网站下载。"
             Case "zh-TW"
                 title = "Steam 掛卡工具"
                 info_restart = "重新開機程式生效"
@@ -132,6 +136,8 @@ Public Class Language
                 dgv_time = "時間"
                 dgv_msg = "消息"
                 webform_loading = "讀取個人資料"
+                l_github = "托管在 Github 上的源碼："
+                ll_download = "僅在 Github 上下載本程序，不要從其它網站下載。"
             Case Else
                 title = "Steam Trading Cards Farmer"
                 info_restart = "Restart program to apply"
@@ -170,11 +176,13 @@ Public Class Language
                 ll_sce = "Navigate to SteamCardExchange.net"
                 l_notice = "This program use SAM(Steam Achievement Manager) to simulate a Steamwork app running to obtain trading cards."
                 l_warning = "This program may be dangerous to your steam account. USE AT YOUR OWN RISK!"
-                l_blog = "My Blog："
-                l_donation = "Donation Landing Page："
+                l_blog = "My Blog:"
+                l_donation = "Donation Landing Page:"
                 dgv_time = "Time"
                 dgv_msg = "Message"
                 webform_loading = "Reading Profile"
+                l_github = "Source Code On Github:"
+                ll_download = "Download this program only from Github. NEVER download this from other websites."
         End Select
     End Sub
 End Class

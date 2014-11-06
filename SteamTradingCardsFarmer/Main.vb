@@ -72,6 +72,8 @@ Public Class Main
         LabelBlog.Text = language.l_blog
         LabelDonation.Text = language.l_donation
         LinkLabelSCE.Text = language.ll_sce
+        LabelGithub.Text = language.l_github
+        LinkLabelDownload.Text = language.ll_download
 
         log(language.msg_launch, False)
 
@@ -589,6 +591,12 @@ Public Class Main
     End Sub
     Private Sub LinkLabelSAM_LinkClicked(ByVal sender As System.Object, ByVal e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles LinkLabelSAM.LinkClicked
         System.Diagnostics.Process.Start("http://gib.me/sam/")
+    End Sub
+    Private Sub LinkLabelGithub_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabelGtihub.LinkClicked
+        System.Diagnostics.Process.Start("https://github.com/neverweep/SteamTradingCardsFarmer")
+    End Sub
+    Private Sub LinkLabelDownload_LinkClicked_1(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabelDownload.LinkClicked
+        System.Diagnostics.Process.Start("https://github.com/neverweep/SteamTradingCardsFarmer/raw/master/SteamTradingCardsFarmer/bin/Debug/SteamTradingCardsFarmer.exe")
     End Sub
 
     '监听网页窗口是否关闭的事件

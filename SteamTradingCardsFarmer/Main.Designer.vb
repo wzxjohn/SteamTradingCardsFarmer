@@ -57,6 +57,8 @@ Partial Class Main
         Me.ColDrop = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ColTotal = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TabPageAbout = New System.Windows.Forms.TabPage()
+        Me.LabelGithub = New System.Windows.Forms.Label()
+        Me.LinkLabelGtihub = New System.Windows.Forms.LinkLabel()
         Me.LabelSAM = New System.Windows.Forms.Label()
         Me.LinkLabelSAM = New System.Windows.Forms.LinkLabel()
         Me.LabelBlog = New System.Windows.Forms.Label()
@@ -73,6 +75,7 @@ Partial Class Main
         Me.TimerForProfile = New System.Windows.Forms.Timer(Me.components)
         Me.NotifyIconMain = New System.Windows.Forms.NotifyIcon(Me.components)
         Me.CheckBoxWebListener = New System.Windows.Forms.CheckBox()
+        Me.LinkLabelDownload = New System.Windows.Forms.LinkLabel()
         Me.Form1BindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.TabControlMain.SuspendLayout()
         Me.TabPageHome.SuspendLayout()
@@ -301,6 +304,9 @@ Partial Class Main
         '
         'TabPageAbout
         '
+        Me.TabPageAbout.Controls.Add(Me.LinkLabelDownload)
+        Me.TabPageAbout.Controls.Add(Me.LabelGithub)
+        Me.TabPageAbout.Controls.Add(Me.LinkLabelGtihub)
         Me.TabPageAbout.Controls.Add(Me.LabelSAM)
         Me.TabPageAbout.Controls.Add(Me.LinkLabelSAM)
         Me.TabPageAbout.Controls.Add(Me.LabelBlog)
@@ -312,6 +318,17 @@ Partial Class Main
         resources.ApplyResources(Me.TabPageAbout, "TabPageAbout")
         Me.TabPageAbout.Name = "TabPageAbout"
         Me.TabPageAbout.UseVisualStyleBackColor = True
+        '
+        'LabelGithub
+        '
+        resources.ApplyResources(Me.LabelGithub, "LabelGithub")
+        Me.LabelGithub.Name = "LabelGithub"
+        '
+        'LinkLabelGtihub
+        '
+        resources.ApplyResources(Me.LinkLabelGtihub, "LinkLabelGtihub")
+        Me.LinkLabelGtihub.Name = "LinkLabelGtihub"
+        Me.LinkLabelGtihub.TabStop = True
         '
         'LabelSAM
         '
@@ -432,6 +449,12 @@ Partial Class Main
         Me.CheckBoxWebListener.Name = "CheckBoxWebListener"
         Me.CheckBoxWebListener.UseVisualStyleBackColor = True
         '
+        'LinkLabelDownload
+        '
+        resources.ApplyResources(Me.LinkLabelDownload, "LinkLabelDownload")
+        Me.LinkLabelDownload.Name = "LinkLabelDownload"
+        Me.LinkLabelDownload.TabStop = True
+        '
         'Form1BindingSource
         '
         Me.Form1BindingSource.DataSource = GetType(SteamTradingCardsFarmer.Main)
@@ -504,5 +527,8 @@ Partial Class Main
     Friend WithEvents ColTitle As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents ColDrop As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents ColTotal As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents LabelGithub As System.Windows.Forms.Label
+    Friend WithEvents LinkLabelGtihub As System.Windows.Forms.LinkLabel
+    Friend WithEvents LinkLabelDownload As System.Windows.Forms.LinkLabel
 
 End Class
