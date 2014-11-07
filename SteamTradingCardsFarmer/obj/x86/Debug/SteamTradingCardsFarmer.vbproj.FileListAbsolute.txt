@@ -2,10 +2,6 @@ C:\Users\Administrator\Desktop\SteamTradingCardsFarmer\SteamTradingCardsFarmer\o
 C:\Users\Administrator\Desktop\SteamTradingCardsFarmer\SteamTradingCardsFarmer\obj\x86\Debug\SteamTradingCardsFarmer.Resources.resources
 C:\Users\Administrator\Desktop\SteamTradingCardsFarmer\SteamTradingCardsFarmer\obj\x86\Debug\SteamTradingCardsFarmer.Resource.resources
 C:\Users\Administrator\Desktop\SteamTradingCardsFarmer\SteamTradingCardsFarmer\obj\x86\Debug\SteamTradingCardsFarmer.WebForm.resources
-C:\Users\Administrator\Desktop\SteamTradingCardsFarmer\SteamTradingCardsFarmer\obj\x86\Debug\SteamTradingCardsFarmer.Language.en.resources
-C:\Users\Administrator\Desktop\SteamTradingCardsFarmer\SteamTradingCardsFarmer\obj\x86\Debug\SteamTradingCardsFarmer.Language.zh-Hans.resources
-C:\Users\Administrator\Desktop\SteamTradingCardsFarmer\SteamTradingCardsFarmer\obj\x86\Debug\SteamTradingCardsFarmer.Main.zh-Hans.resources
-C:\Users\Administrator\Desktop\SteamTradingCardsFarmer\SteamTradingCardsFarmer\obj\x86\Debug\SteamTradingCardsFarmer.WebForm.zh-Hans.resources
 C:\Users\Administrator\Desktop\SteamTradingCardsFarmer\SteamTradingCardsFarmer\obj\x86\Debug\SteamTradingCardsFarmer.vbproj.GenerateResource.Cache
 C:\Users\Administrator\Desktop\SteamTradingCardsFarmer\SteamTradingCardsFarmer\bin\Debug\SteamTradingCardsFarmer.exe.config
 C:\Users\Administrator\Desktop\SteamTradingCardsFarmer\SteamTradingCardsFarmer\bin\Debug\SteamTradingCardsFarmer.exe.manifest
@@ -13,10 +9,6 @@ C:\Users\Administrator\Desktop\SteamTradingCardsFarmer\SteamTradingCardsFarmer\b
 C:\Users\Administrator\Desktop\SteamTradingCardsFarmer\SteamTradingCardsFarmer\bin\Debug\SteamTradingCardsFarmer.exe
 C:\Users\Administrator\Desktop\SteamTradingCardsFarmer\SteamTradingCardsFarmer\bin\Debug\SteamTradingCardsFarmer.pdb
 C:\Users\Administrator\Desktop\SteamTradingCardsFarmer\SteamTradingCardsFarmer\bin\Debug\SteamTradingCardsFarmer.xml
-C:\Users\Administrator\Desktop\SteamTradingCardsFarmer\SteamTradingCardsFarmer\bin\Debug\en\SteamTradingCardsFarmer.resources.dll
-C:\Users\Administrator\Desktop\SteamTradingCardsFarmer\SteamTradingCardsFarmer\bin\Debug\zh-Hans\SteamTradingCardsFarmer.resources.dll
-C:\Users\Administrator\Desktop\SteamTradingCardsFarmer\SteamTradingCardsFarmer\obj\x86\Debug\en\SteamTradingCardsFarmer.resources.dll
-C:\Users\Administrator\Desktop\SteamTradingCardsFarmer\SteamTradingCardsFarmer\obj\x86\Debug\zh-Hans\SteamTradingCardsFarmer.resources.dll
 C:\Users\Administrator\Desktop\SteamTradingCardsFarmer\SteamTradingCardsFarmer\obj\x86\Debug\SteamTradingCardsFarmer.exe.manifest
 C:\Users\Administrator\Desktop\SteamTradingCardsFarmer\SteamTradingCardsFarmer\obj\x86\Debug\SteamTradingCardsFarmer.application
 C:\Users\Administrator\Desktop\SteamTradingCardsFarmer\SteamTradingCardsFarmer\obj\x86\Debug\SteamTradingCardsFarmer.exe

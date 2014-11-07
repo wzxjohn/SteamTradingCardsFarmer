@@ -279,6 +279,44 @@
   <data name="&gt;&gt;ButtonClipboard.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
+  <data name="LabelLoading.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="LabelLoading.Location" type="System.Drawing.Point, System.Drawing">
+    <value>149, 87</value>
+  </data>
+  <data name="LabelLoading.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>20, 20, 20, 20</value>
+  </data>
+  <data name="LabelLoading.Size" type="System.Drawing.Size, System.Drawing">
+    <value>442, 93</value>
+  </data>
+  <data name="LabelLoading.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="LabelLoading.Text" xml:space="preserve">
+    <value>Loading your badges page. Please wait...
+
+If program have no response for a long time, restart and try again.</value>
+  </data>
+  <data name="LabelLoading.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="LabelLoading.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;LabelLoading.Name" xml:space="preserve">
+    <value>LabelLoading</value>
+  </data>
+  <data name="&gt;&gt;LabelLoading.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LabelLoading.Parent" xml:space="preserve">
+    <value>TabPageHome</value>
+  </data>
+  <data name="&gt;&gt;LabelLoading.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="ButtonClear.Font" type="System.Drawing.Font, System.Drawing">
     <value>微软雅黑, 9pt</value>
   </data>
@@ -319,7 +357,7 @@
     <value>15</value>
   </data>
   <data name="GroupBoxSource.Text" xml:space="preserve">
-    <value>Source</value>
+    <value>Card Data Source</value>
   </data>
   <data name="&gt;&gt;GroupBoxSource.Name" xml:space="preserve">
     <value>GroupBoxSource</value>
@@ -331,7 +369,7 @@
     <value>TabPageHome</value>
   </data>
   <data name="&gt;&gt;GroupBoxSource.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="GroupBoxSelection.Location" type="System.Drawing.Point, System.Drawing">
     <value>480, 101</value>
@@ -355,7 +393,7 @@
     <value>TabPageHome</value>
   </data>
   <data name="&gt;&gt;GroupBoxSelection.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="ButtonStartStop.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -388,7 +426,7 @@
     <value>TabPageHome</value>
   </data>
   <data name="&gt;&gt;ButtonStartStop.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="LinkLabelSCE.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -492,9 +530,6 @@
   <data name="&gt;&gt;LabelCardsTitle.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="LabelGames.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
   <data name="LabelGames.Font" type="System.Drawing.Font, System.Drawing">
     <value>微软雅黑, 9pt</value>
   </data>
@@ -502,10 +537,10 @@
     <value>NoControl</value>
   </data>
   <data name="LabelGames.Location" type="System.Drawing.Point, System.Drawing">
-    <value>194, 39</value>
+    <value>163, 39</value>
   </data>
   <data name="LabelGames.Size" type="System.Drawing.Size, System.Drawing">
-    <value>15, 17</value>
+    <value>46, 17</value>
   </data>
   <data name="LabelGames.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
@@ -528,9 +563,6 @@
   <data name="&gt;&gt;LabelGames.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="LabelCards.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
   <data name="LabelCards.Font" type="System.Drawing.Font, System.Drawing">
     <value>微软雅黑, 9pt</value>
   </data>
@@ -538,10 +570,10 @@
     <value>NoControl</value>
   </data>
   <data name="LabelCards.Location" type="System.Drawing.Point, System.Drawing">
-    <value>194, 19</value>
+    <value>160, 19</value>
   </data>
   <data name="LabelCards.Size" type="System.Drawing.Size, System.Drawing">
-    <value>15, 17</value>
+    <value>49, 17</value>
   </data>
   <data name="LabelCards.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
@@ -586,7 +618,7 @@
     <value>TabPageHome</value>
   </data>
   <data name="&gt;&gt;GroupBoxInfo.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="dgvList.ColumnHeadersHeight" type="System.Int32, mscorlib">
     <value>24</value>
@@ -670,7 +702,7 @@
     <value>TabPageHome</value>
   </data>
   <data name="&gt;&gt;dgvList.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="TabPageHome.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 29</value>
@@ -1195,6 +1227,15 @@
   <data name="&gt;&gt;CheckBoxWebListener.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <metadata name="ToolTipProfile.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>591, 20</value>
+  </metadata>
+  <metadata name="ToolTipClear.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>725, 20</value>
+  </metadata>
+  <metadata name="ToolTipClipboard.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>851, 20</value>
+  </metadata>
   <metadata name="Form1BindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
@@ -1354,6 +1395,24 @@
   </data>
   <data name="&gt;&gt;NotifyIconMain.Type" xml:space="preserve">
     <value>System.Windows.Forms.NotifyIcon, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ToolTipProfile.Name" xml:space="preserve">
+    <value>ToolTipProfile</value>
+  </data>
+  <data name="&gt;&gt;ToolTipProfile.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolTip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ToolTipClear.Name" xml:space="preserve">
+    <value>ToolTipClear</value>
+  </data>
+  <data name="&gt;&gt;ToolTipClear.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolTip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ToolTipClipboard.Name" xml:space="preserve">
+    <value>ToolTipClipboard</value>
+  </data>
+  <data name="&gt;&gt;ToolTipClipboard.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolTip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;Form1BindingSource.Name" xml:space="preserve">
     <value>Form1BindingSource</value>

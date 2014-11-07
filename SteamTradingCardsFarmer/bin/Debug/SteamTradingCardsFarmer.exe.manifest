@@ -53,14 +53,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SteamTradingCardsFarmer.exe" size="306176">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SteamTradingCardsFarmer.exe" size="321024">
       <assemblyIdentity name="SteamTradingCardsFarmer" version="0.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>ykD5U4iqpfRjmFXd58nuQzpRHn0=</dsig:DigestValue>
+        <dsig:DigestValue>VQC5WinHkX72OsZwcGSkoprYOIY=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

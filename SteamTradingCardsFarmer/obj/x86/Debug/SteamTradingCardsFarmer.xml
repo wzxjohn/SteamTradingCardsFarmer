@@ -28,6 +28,18 @@ SteamTradingCardsFarmer
   使用此强类型资源类，为所有资源查找
   重写当前线程的 CurrentUICulture 属性。
 </summary>
+</member><member name="P:SteamTradingCardsFarmer.My.Resources.Resource.icon_error">
+	<summary>
+  查找类似于 (Icon) 的 System.Drawing.Icon 类型的本地化资源。
+</summary>
+</member><member name="P:SteamTradingCardsFarmer.My.Resources.Resource.icon_normal">
+	<summary>
+  查找类似于 (Icon) 的 System.Drawing.Icon 类型的本地化资源。
+</summary>
+</member><member name="P:SteamTradingCardsFarmer.My.Resources.Resource.icon_running">
+	<summary>
+  查找类似于 (Icon) 的 System.Drawing.Icon 类型的本地化资源。
+</summary>
 </member><member name="P:SteamTradingCardsFarmer.My.Resources.Resource.SAM">
 	<summary>
   查找 System.Byte[] 类型的本地化资源。

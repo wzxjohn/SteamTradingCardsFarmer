@@ -4,87 +4,94 @@ Imports System.Net
 Imports System.Resources
 Imports System.Reflection
 Imports System.Threading
-Imports System.Globalization
 Imports System.Runtime.InteropServices
 
 Public Class Main
     Private VERSION As String = "0.1" '定义版本号
-    Private SAM_EXE_NAME As String = "SAM.Game" '定义SAM文件名
+    Private SAM_EXE_NAME As String = "SAM.STCF" '定义SAM文件名
     Private SAM_DLL_NAME As String = "SAM.API" '定义SAM API文件名
     Private SAMEXEPath As String = Path.GetTempPath() & SAM_EXE_NAME & ".exe" '定义SAM路径（临时文件夹）
     Private SAMDLLPath As String = Path.GetTempPath() & SAM_DLL_NAME & ".dll" '定义SAM API路径（临时文件夹）
-    Private avaliableCards As Integer = 0 '定义可掉落卡片数
-    Private avaliableGames As Integer = 0 '定义可掉落游戏数
+    Private avaliableCardsCount As Integer = 0 '定义可掉落卡片数
+    Private avaliableGamesCount As Integer = 0 '定义可掉落游戏数
     Private selectedAppId As String = "753" '定义当前选择游戏的APP ID
-    Private farmAppId() As String '定义当前需要挂机的游戏的APP ID数组
-    Private currentAppNum As Integer = 0 '定义当前挂机的游戏在farmAppId中的标引
-    Private isFarming As Boolean = False '定义当前是否在执行挂机
+    Private farmAppIds() As String '定义当前需要挂机的游戏的APP ID数组
+    Private farmingAppNumInArray As Integer = 0 '定义当前挂机的游戏在farmAppId中的标引
+    Private farmingState As Boolean = False '定义当前是否在执行挂机
     Private fromProfile As Boolean '定义当前挂机数据来源是否为个人资料页面
-    Private reloadWeb As Boolean = False '定义是否是重载个人资料页
+    Private reloadingProfile As Boolean = False '定义是否是重载个人资料页
     Private instantRunning As Boolean = False '定义程序实例是否已在运行
-    Private process As Process '定义进程
 
-    Friend language As New Language '语言资源
+    Friend langStrings As New Language '语言资源
     Friend htmlSource As String 'html源码
-    Friend cc As CookieContainer 'CookieContainer
+    Friend cookieContainer As CookieContainer 'CookieContainer
     Friend cookieText As String '从网页中获取到的Cookie文本
     Friend badgesURL As String '个人资料页面地址
 
     Private threadGetCardsData As New System.Threading.Thread(AddressOf getCardsData) '分析卡片数据线程
     Private threadGetHtmlSource As New System.Threading.Thread(AddressOf getHtmlSource) '拉取徽章页面线程
+    Private threadRunAppInBackground As New System.Threading.Thread(AddressOf runAppInBackground) '拉取徽章页面线程
 
     '程序的初始化
     Private Sub Main_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         '判断程序是否已在运行，如果已经在运行就退出程序
+        Dim process As Process '定义进程
         If (IsInstanceRunning()) Then
             instantRunning = True
-            MsgBox(language.msg_running, , language.title)
+            MsgBox(langStrings.msg_running, , langStrings.title)
             process.GetCurrentProcess().Kill()
+            process = Nothing
         End If
 
         '初始化界面语言
-        language.init()
-        Me.Text = language.title & " " & VERSION
-        TabPageHome.Text = language.t_home
-        TabPageAbout.Text = language.t_about
-        TabPageLog.Text = language.t_log
-        ButtonClear.Text = language.b_clear
-        ButtonClipboard.Text = language.b_clipboard
-        ButtonInverse.Text = language.b_inverse
-        ButtonSelect.Text = language.b_select
-        ButtonUnselect.Text = language.b_unselect
-        ButtonInverse.Text = language.b_inverse
-        ButtonStartStop.Text = language.b_start
-        ButtonProfile.Text = language.b_profile
-        GroupBoxInfo.Text = language.gb_info
-        GroupBoxSelection.Text = language.gb_selection
-        GroupBoxSource.Text = language.gb_source
-        dgvList.Columns(2).HeaderText = language.dgv_id
-        dgvList.Columns(3).HeaderText = language.dgv_title
-        dgvList.Columns(4).HeaderText = language.dgv_drop
-        dgvList.Columns(5).HeaderText = language.dgv_total
-        dgvLog.Columns(0).HeaderText = language.dgv_time
-        dgvLog.Columns(1).HeaderText = language.dgv_msg
-        LabelCardsTitle.Text = language.l_cards
-        LabelGamesTitle.Text = language.l_games
-        LabelWarning.Text = language.l_warning
-        LabelNotice.Text = language.l_notice
-        LabelBlog.Text = language.l_blog
-        LabelDonation.Text = language.l_donation
-        LinkLabelSCE.Text = language.ll_sce
-        LabelGithub.Text = language.l_github
-        LinkLabelDownload.Text = language.ll_download
+        langStrings.init()
+        Me.Text = langStrings.title & " " & VERSION
+        TabPageHome.Text = langStrings.t_home
+        TabPageAbout.Text = langStrings.t_about
+        TabPageLog.Text = langStrings.t_log
+        ButtonClear.Text = langStrings.b_clear
+        ButtonClipboard.Text = langStrings.b_clipboard
+        ButtonInverse.Text = langStrings.b_inverse
+        ButtonSelect.Text = langStrings.b_select
+        ButtonUnselect.Text = langStrings.b_unselect
+        ButtonInverse.Text = langStrings.b_inverse
+        ButtonStartStop.Text = langStrings.b_start
+        ButtonProfile.Text = langStrings.b_profile
+        GroupBoxInfo.Text = langStrings.gb_info
+        GroupBoxSelection.Text = langStrings.gb_selection
+        GroupBoxSource.Text = langStrings.gb_source
+        dgvList.Columns(2).HeaderText = langStrings.dgv_id
+        dgvList.Columns(3).HeaderText = langStrings.dgv_title
+        dgvList.Columns(4).HeaderText = langStrings.dgv_drop
+        dgvList.Columns(5).HeaderText = langStrings.dgv_total
+        dgvLog.Columns(0).HeaderText = langStrings.dgv_time
+        dgvLog.Columns(1).HeaderText = langStrings.dgv_msg
+        LabelCardsTitle.Text = langStrings.l_cards
+        LabelGamesTitle.Text = langStrings.l_games
+        LabelWarning.Text = langStrings.l_warning
+        LabelNotice.Text = langStrings.l_notice
+        LabelBlog.Text = langStrings.l_blog
+        LabelDonation.Text = langStrings.l_donation
+        LinkLabelSCE.Text = langStrings.ll_sce
+        LabelGithub.Text = langStrings.l_github
+        LinkLabelDownload.Text = langStrings.ll_download
+        LabelLoading.Text = langStrings.l_loading
 
-        log(language.msg_launch, False)
+        log(langStrings.msg_launch, False)
 
         TimerForClip.Interval = 60 * 25 * 1000 '设置剪贴板方式切换游戏时间
-        TimerForProfile.Interval = 10000 '60 * 15 * 1000 '设置个人资料方式切换游戏时间
+        TimerForProfile.Interval = 60 * 15 * 1000 '设置个人资料方式切换游戏时间
 
         dgvList.SelectionMode = DataGridViewSelectionMode.FullRowSelect '设置多行选择
         dgvLog.SelectionMode = DataGridViewSelectionMode.FullRowSelect '设置多行选择
 
-        NotifyIconMain.Icon = Me.Icon '将托盘图报设置为与程序自身一致
-        NotifyIconMain.Text = language.title
+        NotifyIconMain.Icon = My.Resources.Resource.icon_normal '设置托盘图标
+        NotifyIconMain.Text = langStrings.title '托盘图标设置标题
+
+        '设置三个重要按钮的Tooltip
+        ToolTipProfile.SetToolTip(ButtonProfile, langStrings.tt_profile)
+        ToolTipClear.SetToolTip(ButtonClear, langStrings.tt_clear)
+        ToolTipClipboard.SetToolTip(ButtonClipboard, langStrings.tt_clipboard)
 
         Control.CheckForIllegalCrossThreadCalls = False
     End Sub
@@ -96,16 +103,11 @@ Public Class Main
             Me.NotifyIconMain.Visible = True
         End If
     End Sub
-    Private Sub NotifyIcon_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles NotifyIconMain.Click
-        Me.Visible = True
-        Me.WindowState = FormWindowState.Normal
-    End Sub
-
     '退出程序时删除临时文件
     Private Sub Main_Closed(ByVal sender As Object, ByVal e As System.EventArgs) Handles MyBase.Closed
         If instantRunning = False Then '判断是否有实例运行，否则在这里就会把正在运行的SAM也关掉
             '关闭sam
-            stopSAM()
+            killSAM()
 
             '删除临时文件
             Dim FileExists As Boolean
@@ -124,23 +126,33 @@ Public Class Main
         Me.Dispose()
         System.GC.Collect()
     End Sub
+    '处理通知图标的点击事件
+    Private Sub NotifyIcon_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles NotifyIconMain.Click
+        Me.Visible = True
+        Me.WindowState = FormWindowState.Normal
+    End Sub
+
+    '添加游戏的托管事件
+    Public Delegate Sub dgvListAddRowDelgate(dgv As DataGridView, appState As String, appToRun As Boolean, appID As Double, appTitle As String, appCardDrop As Double, appCardTotal As Double)
+    Public Sub dgvLogAddRowInvoke(dgv As DataGridView, appState As String, appToRun As Boolean, appID As Double, appTitle As String, appCardDrop As Double, appCardTotal As Double)
+        dgv.Rows.Add(appState, appToRun, appID, appTitle, appCardDrop, appCardTotal)
+    End Sub
 
     '获取卡片数据
     Private Sub getCardsData()
         '先关闭所有按键
-        btnEnable(False)
+        enableButton(False)
 
         dgvList.Rows.Clear() '清除游戏列表
         LinkLabelSCE.Enabled = False
 
         '清空info信息
-        avaliableCards = 0
-        avaliableGames = 0
+        avaliableCardsCount = 0
+        avaliableGamesCount = 0
 
         '如果html源码数据不存在，则进行一些处理
         If htmlSource Is Nothing Or htmlSource = "" Or htmlSource Is DBNull.Value Then
-            btnEnable(False)
-            log(language.msg_nocards, True)
+            enableButton(False)
 
             TimerForClip.Enabled = False
             TimerForProfile.Enabled = False
@@ -148,6 +160,10 @@ Public Class Main
             ButtonClipboard.Enabled = True
             ButtonProfile.Enabled = True
             ButtonClear.Enabled = True
+
+            NotifyIconMain.Icon = My.Resources.Resource.icon_error
+            log(langStrings.msg_nocards, True)
+
             Exit Sub '跳过后续步骤
         End If
 
@@ -155,24 +171,26 @@ Public Class Main
                             "badge_row_overlay"" .*?gamecards\/(\d+)\/.*?progress_info_bold"">(\d+)?.*?card_drop_info_header.*?(\d+).*?badge_title"">(.*?)\&nbsp;.*?style=""clear", _
                             RegexOptions.IgnoreCase Or RegexOptions.IgnorePatternWhitespace)
 
-        Dim appToKeep As Boolean = False
+        Dim stillFarm As Boolean = False
 
         Do While m.Success '如果成功匹配，则进行添加到列表的任务
             If Val(m.Groups(2).Value) <= Val(m.Groups(3).Value) And Val(m.Groups(2).Value) > 0 Then '掉落卡片能掉落卡片时才添加视图中
                 '将每个游戏的卡片资料加入到列表中
-                dgvList.Rows.Add(Nothing, IIf(reloadWeb, False, True), Val(m.Groups(1).Value.Trim()), m.Groups(4).Value.ToString().Trim(), Val(m.Groups(2).Value), Val(m.Groups(3).Value))
-                avaliableGames = avaliableGames + 1
-                avaliableCards = avaliableCards + Val(m.Groups(2).Value)
-                If reloadWeb Then
-                    For Each item In farmAppId
+                '使用invoke进行操作
+                dgvList.Invoke(New dgvListAddRowDelgate(AddressOf dgvLogAddRowInvoke), New Object() {dgvList, Nothing, IIf(reloadingProfile, False, True), Val(m.Groups(1).Value), m.Groups(4).Value.ToString().Trim(), Val(m.Groups(2).Value), Val(m.Groups(3).Value)})
+
+                avaliableGamesCount = avaliableGamesCount + 1
+                avaliableCardsCount = avaliableCardsCount + Val(m.Groups(2).Value)
+                If reloadingProfile Then
+                    For Each item In farmAppIds
                         If Val(item) = Val(m.Groups(1).Value) Then
-                            dgvList.Rows.Item(avaliableGames - 1).Cells(1).Value = True
+                            dgvList.Rows.Item(avaliableGamesCount - 1).Cells(1).Value = True
                         End If
                     Next
 
                     '如果之前挂机的游戏没挂完，这里设置一个状态
-                    If m.Groups(1).Value.Trim() = farmAppId(0).ToString().Trim() Then
-                        appToKeep = True
+                    If m.Groups(1).Value.Trim() = farmAppIds(farmingAppNumInArray).ToString().Trim() Then
+                        stillFarm = True
                     End If
                 End If
             End If
@@ -180,16 +198,18 @@ Public Class Main
         Loop
 
         '显示到info窗口
-        LabelCards.Text = avaliableCards
-        LabelGames.Text = avaliableGames
+        LabelCards.Text = avaliableCardsCount
+        LabelGames.Text = avaliableGamesCount
 
         '重置变量为空
         htmlSource = Nothing
 
+        '重新将需要挂机的游戏加入到数组中去
+        findFarmApp()
+
         '如果当前能够挂卡的游戏数量为0，则提示并退出；否则将一些按钮设置为可用状态
-        If (avaliableGames = 0) Then
-            btnEnable(False)
-            log(language.msg_nocards, True)
+        If (avaliableGamesCount = 0) Or (farmAppIds.Length <= 1 And farmAppIds(0) Is Nothing) Then
+            enableButton(True)
 
             '关闭定时器
             TimerForClip.Enabled = False
@@ -198,10 +218,14 @@ Public Class Main
             ButtonClipboard.Enabled = True
             ButtonProfile.Enabled = True
             ButtonClear.Enabled = True
+            ButtonStartStop.Text = langStrings.b_start
 
-            stopSAM()
-        ElseIf Not reloadWeb Then '如果现在正在挂卡中（个人资料），跳过改变按钮
-            btnEnable(True)
+            killSAM()
+
+            NotifyIconMain.Icon = My.Resources.Resource.icon_error
+            log(langStrings.msg_nocards, True)
+        ElseIf Not reloadingProfile Then '如果现在正在挂卡中（个人资料），跳过改变按钮
+            enableButton(True)
             ButtonStartStop.Enabled = True
             selectedAppId = dgvList.Rows.Item(0).Cells(2).Value
 
@@ -212,27 +236,26 @@ Public Class Main
             LinkLabelSCE.Enabled = True
             ButtonStartStop.Enabled = True
 
-            '重新将需要挂机的游戏加入到数组中去
-            findFarmAppIds()
             '如果之前的挂机的游戏已经不存在于列表中，则停止SAM，重开新的SAM挂新的游戏
-            If Not appToKeep Then
-                stopSAM()
-                currentAppNum = 0
+            If Not stillFarm Then
+                farmingAppNumInArray = 0
                 runSAMInBackground()
             End If
 
-            farmingFlag()
+            flagFarmingApp()
 
-            disabelCheckbox(True)
+            makeCheckboxReadonly(True)
         End If
 
-        '将重新读取个人资料标记为假，完成一次完整的重读取个人资料的过程
-        reloadWeb = False
+        reloadingProfile = False '将重新读取个人资料标记为假，完成一次完整的重读取个人资料的过程
+        LabelLoading.Visible = False '隐藏读取提示
+
 
         '终止两个线程
         Try
             threadGetCardsData.Abort()
             threadGetHtmlSource.Abort()
+            threadRunAppInBackground.Abort()
         Catch ThreadAbortException As Exception
         End Try
 
@@ -244,40 +267,41 @@ Public Class Main
     Private Sub ButtonStartStop_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ButtonStartStop.Click
 
         '如果没有进行挂卡，则
-        If isFarming = False Then
-            stopSAM() '关闭SAM
+        If farmingState = False Then
+            killSAM() '关闭SAM
 
             '从当前挂卡列表中找到需要挂卡的数据
-            findFarmAppIds()
+            findFarmApp()
 
-            If farmAppId.Length <= 1 Then
+            If farmAppIds.Length <= 1 Then
                 Return
             End If
 
             If fromProfile = False Then
                 '剪贴板方式
-                currentAppNum = 0
+                farmingAppNumInArray = 0
                 '如果没记录到这个游戏的App ID，则直接退出
-                If farmAppId(currentAppNum) Is Nothing Then
+                If farmAppIds(farmingAppNumInArray) Is Nothing Then
                     Exit Sub
                 End If
-                If farmAppId.Length > 2 Then '仅在有两个游戏以上的时候才需要定时切换游戏
+                If farmAppIds.Length > 2 Then '仅在有两个游戏以上的时候才需要定时切换游戏
                     TimerForClip.Enabled = True '打开定时器
                 End If
-                runSAMInBackground()
             Else
                 '个人资料方式
-                currentAppNum = 0 '个人资料方式只用挂第一个游戏，直到这个游戏挂完
-                If farmAppId(currentAppNum) Is Nothing Then
+                farmingAppNumInArray = 0 '个人资料方式只用挂第一个游戏，直到这个游戏挂完
+                If farmAppIds(farmingAppNumInArray) Is Nothing Then
                     Exit Sub
                 End If
                 TimerForProfile.Enabled = True
-                runSAMInBackground()
             End If
 
-            ButtonStartStop.Text = language.b_stop
-            log(language.msg_start, False)
-            isFarming = True
+            '后台运行SAM
+            runSAMInBackground()
+
+            ButtonStartStop.Text = langStrings.b_stop
+            log(langStrings.msg_start, False)
+            farmingState = True
 
             '禁止按钮
             ButtonSelect.Enabled = False
@@ -287,15 +311,17 @@ Public Class Main
             ButtonProfile.Enabled = False
             ButtonClear.Enabled = False
 
-            disabelCheckbox(True)
+            makeCheckboxReadonly(True)
+            NotifyIconMain.Icon = My.Resources.Resource.icon_running
         Else
             '终止SAM
-            stopSAM()
+            killSAM()
 
             '强制终止两个线程
             Try
                 threadGetCardsData.Abort()
                 threadGetHtmlSource.Abort()
+                threadRunAppInBackground.Abort()
             Catch ThreadAbortException As Exception
             End Try
 
@@ -309,9 +335,9 @@ Public Class Main
                 dgvList.Rows.Item(i).Cells(0).Value = Nothing
             Next
 
-            ButtonStartStop.Text = language.b_start '改变按钮内容
-            log(language.msg_stop, False)
-            isFarming = False
+            ButtonStartStop.Text = langStrings.b_start '改变按钮内容
+            log(langStrings.msg_stop, False)
+            farmingState = False
 
             '设置按钮状态
             ButtonSelect.Enabled = True
@@ -321,7 +347,8 @@ Public Class Main
             ButtonProfile.Enabled = True
             ButtonClear.Enabled = True
 
-            disabelCheckbox(False)
+            makeCheckboxReadonly(False)
+            NotifyIconMain.Icon = My.Resources.Resource.icon_normal
         End If
     End Sub
 
@@ -331,7 +358,8 @@ Public Class Main
         htmlSource = Nothing
         ButtonClipboard.Enabled = False
         ButtonProfile.Enabled = False
-        log(language.msg_readclip, False)
+        ButtonClear.Enabled = False
+        log(langStrings.msg_readclip, False)
         htmlSource = Clipboard.GetText() '从剪贴板获取数据
 
         threadGetCardsData = New System.Threading.Thread(AddressOf getCardsData)
@@ -344,14 +372,12 @@ Public Class Main
 
     '从个人资料读取
     Private Sub ButtonProfile_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ButtonProfile.Click
-        htmlSource = Nothing
         ButtonClipboard.Enabled = False
         ButtonProfile.Enabled = False
         ButtonClear.Enabled = False
-        btnEnable(False)
+        enableButton(False)
         ButtonStartStop.Enabled = False
-        log(language.msg_readprofile, False)
-        CheckBoxWebListener.Checked = False
+        log(langStrings.msg_readprofile, False)
         fromProfile = True
         Me.Enabled = False
         WebForm.Show()
@@ -359,21 +385,18 @@ Public Class Main
 
     '剪贴板挂卡的定时事件
     Protected Sub TimerForClip_Tick(ByVal sender As Object, ByVal e As System.EventArgs) Handles TimerForClip.Tick
-        '关闭SAM
-        stopSAM()
-
         '进行下一个游戏的挂卡
-        If currentAppNum >= farmAppId.Length - 2 Then
-            currentAppNum = 0
+        If farmingAppNumInArray >= farmAppIds.Length - 2 Then
+            farmingAppNumInArray = 0
         Else
-            currentAppNum = currentAppNum + 1
+            farmingAppNumInArray = farmingAppNumInArray + 1
         End If
         runSAMInBackground()
     End Sub
     '个人资料挂卡的定时事件
     Protected Sub TimerForProfile_Tick(ByVal sender As Object, ByVal e As System.EventArgs) Handles TimerForProfile.Tick
-        reloadWeb = True '设置重载个人资料
-        log(language.msg_reload, False)
+        reloadingProfile = True '设置重载个人资料
+        log(langStrings.msg_reload, False)
         threadGetHtmlSource = New System.Threading.Thread(AddressOf getHtmlSource)
         threadGetHtmlSource.IsBackground = True
         threadGetHtmlSource.Priority = Threading.ThreadPriority.BelowNormal
@@ -381,24 +404,25 @@ Public Class Main
     End Sub
 
     '设立运行标记程序
-    Private Sub farmingFlag()
+    Private Sub flagFarmingApp()
         For i = 0 To dgvList.Rows.Count - 1 Step 1
-            If (Trim(Str(dgvList.Rows.Item(i).Cells(2).Value)) = farmAppId(currentAppNum)) Then
+            If (Trim(Str(dgvList.Rows.Item(i).Cells(2).Value)) = farmAppIds(farmingAppNumInArray)) Then
                 dgvList.Rows.Item(i).Cells(0).Value = "●"
             Else
                 dgvList.Rows.Item(i).Cells(0).Value = Nothing
             End If
         Next
     End Sub
+
     '寻找已选择的AppID
-    Private Sub findFarmAppIds()
+    Private Sub findFarmApp()
         '将打上勾的游戏添加到挂卡数组中
-        ReDim farmAppId(0)
+        ReDim farmAppIds(0)
         Dim j = 0
         For i = 0 To dgvList.Rows.Count - 1 Step 1
             If (dgvList.Rows.Item(i).Cells(1).Value = True) Then
-                ReDim Preserve farmAppId(j + 1)
-                farmAppId(j) = Trim(Str(dgvList.Rows.Item(i).Cells(2).Value))
+                ReDim Preserve farmAppIds(j + 1)
+                farmAppIds(j) = Trim(Str(dgvList.Rows.Item(i).Cells(2).Value))
                 j = j + 1
             End If
         Next
@@ -408,9 +432,20 @@ Public Class Main
     Private Sub runSAMInBackground()
         '判断Steam进程是否存在
         If System.Diagnostics.Process.GetProcessesByName("Steam").Length = 0 Then
-            '不存在退出
-            log(language.msg_nosteam, True)
-            Exit Sub
+
+            enableButton(True)
+
+            '关闭定时器
+            TimerForClip.Enabled = False
+            TimerForProfile.Enabled = False
+
+            ButtonClipboard.Enabled = True
+            ButtonProfile.Enabled = True
+            ButtonClear.Enabled = True
+            ButtonStartStop.Text = langStrings.b_start
+
+            '不存在则退出
+            log(langStrings.msg_nosteam, True)
         Else
             '存在则新开SAM
             '如果SAM不文件已存在，则释放到临时文件夹中
@@ -428,18 +463,35 @@ Public Class Main
                 End Using
             End If
 
-            stopSAM()
-            process = New Process
-            process.StartInfo.FileName = SAMEXEPath
-            process.StartInfo.Arguments = farmAppId(currentAppNum)
-            process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden
-            process.Start()
-            farmingFlag()
-            log(farmAppId(currentAppNum) & language.msg_appstart, False)
+            threadRunAppInBackground = New System.Threading.Thread(AddressOf runAppInBackground)
+            threadRunAppInBackground.IsBackground = True
+            threadRunAppInBackground.Priority = Threading.ThreadPriority.BelowNormal
+            threadRunAppInBackground.Start()
         End If
     End Sub
+    Private Sub runAppInBackground()
+        killSAM()
+
+        System.Threading.Thread.Sleep(2000) '给系统留出时间操作
+
+        Dim process As Process '定义进程
+        process = New Process
+        process.StartInfo.FileName = SAMEXEPath
+        process.StartInfo.Arguments = farmAppIds(farmingAppNumInArray)
+        process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden
+        process.Start()
+        flagFarmingApp()
+        log(farmAppIds(farmingAppNumInArray) & langStrings.msg_appstart, False)
+
+        Try
+            threadRunAppInBackground.Abort()
+        Catch ThreadAbortException As Exception
+        End Try
+
+    End Sub
+
     '停止SAM
-    Private Sub stopSAM()
+    Private Sub killSAM()
         Dim sProcesses() As System.Diagnostics.Process
         Dim sprocess As System.Diagnostics.Process
         sProcesses = System.Diagnostics.Process.GetProcesses
@@ -448,17 +500,15 @@ Public Class Main
                 sprocess.Kill()
             End If
         Next
-
-        System.Threading.Thread.Sleep(500)
     End Sub
 
     '全选按钮
     Private Sub ButtonSelect_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ButtonSelect.Click
-        selectCheckbox(True)
+        makeCheckboxChecked(True)
     End Sub
     '全不选按钮
     Private Sub ButtonUnselect_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ButtonUnselect.Click
-        selectCheckbox(False)
+        makeCheckboxChecked(False)
     End Sub
     '反向选择按钮
     Private Sub ButtonInverse_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ButtonInverse.Click
@@ -470,8 +520,9 @@ Public Class Main
             End If
         Next
     End Sub
+
     '按钮允许禁止子程序
-    Private Sub btnEnable(ByVal enable As Boolean)
+    Private Sub enableButton(ByVal enable As Boolean)
         ButtonStartStop.Enabled = enable
         ButtonSelect.Enabled = enable
         ButtonUnselect.Enabled = enable
@@ -480,27 +531,33 @@ Public Class Main
         LinkLabelSCE.Enabled = enable
     End Sub
     '选择按钮是否打勾子程序
-    Private Sub selectCheckbox(ByVal all As Boolean)
+    Private Sub makeCheckboxChecked(ByVal all As Boolean)
         For i = 0 To dgvList.Rows.Count - 1 Step 1
             dgvList.Rows.Item(i).Cells(1).Value = all
         Next
     End Sub
     '选择按钮是否可用子程序
-    Private Sub disabelCheckbox(ByVal onlyread As Boolean)
+    Private Sub makeCheckboxReadonly(ByVal onlyread As Boolean)
         For i = 0 To dgvList.Rows.Count - 1 Step 1
             dgvList.Rows.Item(i).Cells(1).ReadOnly = onlyread
         Next
     End Sub
-
+    '添加日志的托管事件
+    Public Delegate Sub dgvLogAddRowDelgate(dgv As DataGridView, logTime As String, logMsg As String)
+    Public Sub dgvLogAddRowInvoke(dgv As DataGridView, logTime As String, logMsg As String)
+        dgvLog.Rows.Insert(0, logTime, logMsg)
+    End Sub
     '日志记录
     Private Sub log(ByVal msg As String, ByVal showMsgbox As Boolean)
-        dgvLog.Rows.Insert(0, DateAndTime.DateString & " " & DateAndTime.TimeString, msg)
-        If (showMsgbox) Then
+        '使用托管增加行
+        dgvLog.Invoke(New dgvLogAddRowDelgate(AddressOf dgvLogAddRowInvoke), New Object() {dgvLog, DateAndTime.DateString & " " & DateAndTime.TimeString, msg})
+
+        If showMsgbox Then
             '窗口没有最小化则MsgBox，否则气泡通知
             If Me.WindowState <> FormWindowState.Minimized Then
-                MsgBox(msg, , language.title)
+                MsgBox(msg, , langStrings.title)
             Else
-                NotifyIconMain.ShowBalloonTip(2000, language.title, msg, ToolTipIcon.None)
+                NotifyIconMain.ShowBalloonTip(2000, langStrings.title, msg, ToolTipIcon.None)
             End If
         End If
     End Sub
@@ -531,10 +588,10 @@ Public Class Main
 
     '拉取html数据
     Private Sub getHtmlSource()
-        Dim multiPages As Boolean = True
-        Dim pageNum As Integer = 1
-        Dim currentHtmlSource As String = ""
-        htmlSource = ""
+        Dim multiPages As Boolean = True '是否按分页处理
+        Dim pageNum As Integer = 1 '页码
+        Dim currentHtmlSource As String '当前页面的源码
+        htmlSource = Nothing
 
         While multiPages = True
             Try
@@ -545,7 +602,7 @@ Public Class Main
                 Dim httpResp As System.Net.HttpWebResponse
                 Dim httpURL As New System.Uri(badgesURL & "/?p=" & pageNum)
                 httpReq = CType(WebRequest.Create(httpURL), HttpWebRequest)
-                httpReq.CookieContainer = cc '将之前获得的cookie加入到http请求中
+                httpReq.CookieContainer = cookieContainer '将之前获得的cookie加入到http请求中
                 httpReq.Timeout = 30000 '将超时设置为30秒
                 httpReq.Method = "GET"
                 httpResp = CType(httpReq.GetResponse(), HttpWebResponse)
@@ -558,8 +615,10 @@ Public Class Main
                     "\?p=" & pageNum, _
                     RegexOptions.IgnoreCase Or RegexOptions.IgnorePatternWhitespace)
 
+                '将分页的HTML拼接在一起
                 htmlSource = htmlSource & currentHtmlSource
 
+                '如果没有成功匹配，说明没有下一页了，直接开始处理html数据
                 If Not mm.Success Then
                     multiPages = False
                     threadGetCardsData = New System.Threading.Thread(AddressOf getCardsData)
@@ -570,10 +629,14 @@ Public Class Main
 
             Catch WebException As Exception
                 '如果拉取网页发生了异常
-                log(language.msg_loadprofileerr, True)
+                log(langStrings.msg_loadprofileerr, True)
+
+                htmlSource = Nothing
 
                 ButtonClipboard.Enabled = True
                 ButtonProfile.Enabled = True
+                ButtonClear.Enabled = True
+                LabelLoading.Visible = False
             End Try
         End While
     End Sub
@@ -605,8 +668,10 @@ Public Class Main
             '如果取得了cookie
             If cookieText <> Nothing And cookieText <> "" Then
 
+                LabelLoading.Visible = True
+
                 '将其处理，加到CookieContainer中
-                cc = New CookieContainer()
+                cookieContainer = New CookieContainer()
                 Dim cookies() = cookieText.Split(";")
 
                 For Each cookie In cookies
@@ -614,7 +679,7 @@ Public Class Main
                         Dim cookieNameValue() = cookie.Split("=")
                         Dim ck = New Cookie(cookieNameValue(0).Trim().ToString(), cookieNameValue(1).Trim().ToString())
                         ck.Domain = "steamcommunity.com"
-                        cc.Add(ck)
+                        cookieContainer.Add(ck)
                     End If
                 Next
 
@@ -624,7 +689,8 @@ Public Class Main
                 threadGetHtmlSource.Start()
             Else
                 '如果没得到html数据
-                log(language.msg_nocards, True)
+                NotifyIconMain.Icon = My.Resources.Resource.icon_error
+                log(langStrings.msg_nocards, True)
 
                 ButtonClipboard.Enabled = True
                 ButtonProfile.Enabled = True
@@ -635,23 +701,14 @@ Public Class Main
             CheckBoxWebListener.Checked = False
         End If
     End Sub
-
-    'name表示资源文件中的key值,方法说明:根据key值name自动查找当前语言区域适配的资源文件并且返回key对应的value值 
-    Private Function GetMessage(ByVal name As String)
-        Try
-            Dim rm As ResourceManager = New ResourceManager("SteamTradingCardsFarmer.Language", Assembly.GetExecutingAssembly())
-            Return rm.GetString(name)
-        Catch ex As Exception
-            Return "can't load language"
-        End Try
-    End Function
-
+    '清除Cookie按钮点击事件
     Private Sub ButtonClear_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ButtonClear.Click
         Dim i As Integer = 0
         InternetSetCookie("http://steamcommunity.com", Nothing, Nothing)
         InternetSetCookie("https://steamcommunity.com", Nothing, Nothing)
-        MsgBox(language.info_restart, , language.title)
+        MsgBox(langStrings.info_restart, , langStrings.title)
     End Sub
+    '引入Dll删除Cookie
     <DllImport("wininet.dll", CharSet:=CharSet.Auto, SetLastError:=True)> _
     Public Shared Function InternetSetCookie(ByVal lpszUrl As String, _
       ByVal lpszCookieName As String, ByVal lpszCookieData As String) As Boolean

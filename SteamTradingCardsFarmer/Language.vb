@@ -1,50 +1,55 @@
 ﻿Imports System.Threading
 
 Public Class Language
-    Friend info_restart As String
-    Friend msg_appstart As String
-    Friend msg_appstop As String
-    Friend msg_launch As String
-    Friend msg_loadprofileerr As String
-    Friend msg_nocards As String
-    Friend msg_nosteam As String
-    Friend msg_readclip As String
-    Friend msg_readprofile As String
-    Friend msg_reload As String
-    Friend msg_running As String
-    Friend msg_start As String
-    Friend msg_stop As String
-    Friend b_clear As String
-    Friend b_select As String
-    Friend b_unselect As String
-    Friend b_inverse As String
-    Friend b_profile As String
-    Friend b_clipboard As String
-    Friend b_start As String
-    Friend b_stop As String
-    Friend dgv_id As String
-    Friend dgv_title As String
-    Friend dgv_drop As String
-    Friend dgv_total As String
-    Friend t_home As String
-    Friend t_about As String
-    Friend t_log As String
-    Friend gb_info As String
-    Friend gb_selection As String
-    Friend gb_source As String
-    Friend l_cards As String
-    Friend l_games As String
-    Friend ll_sce As String
-    Friend l_notice As String
-    Friend l_warning As String
-    Friend l_blog As String
-    Friend l_donation As String
-    Friend dgv_time As String
-    Friend dgv_msg As String
-    Friend title As String
-    Friend webform_loading As String
-    Friend l_github As String
-    Friend ll_download As String
+    Friend title As String = "Steam Trading Cards Farmer"
+    Friend info_restart As String = "Restart program to apply"
+    Friend msg_appstart As String = " starts"
+    Friend msg_appstop As String = " stops"
+    Friend msg_launch As String = "Steam Cards Farmer starts"
+    Friend msg_loadprofileerr As String = "Read profile error"
+    Friend msg_nocards As String = "No droppable cards or invalid data"
+    Friend msg_nosteam As String = "Steam is not running"
+    Friend msg_readclip As String = "Read clipboard"
+    Friend msg_readprofile As String = "Read profile"
+    Friend msg_reload As String = "Reload profile"
+    Friend msg_running As String = "Steam Trading Cards Farmer is already running"
+    Friend msg_start As String = "Start farming"
+    Friend msg_stop As String = "Stop farming"
+    Friend b_clear As String = "Clear"
+    Friend b_select As String = "Select All"
+    Friend b_unselect As String = "Unselect All"
+    Friend b_inverse As String = "Inverse"
+    Friend b_profile As String = "Read Profile"
+    Friend b_clipboard As String = "Read Clipboard"
+    Friend b_start As String = "Start"
+    Friend b_stop As String = "Stop"
+    Friend dgv_id As String = "App ID"
+    Friend dgv_title As String = "Title"
+    Friend dgv_drop As String = "Drop"
+    Friend dgv_total As String = "Total"
+    Friend t_home As String = "Home"
+    Friend t_about As String = "About"
+    Friend t_log As String = "Log"
+    Friend gb_info As String = "Infomation"
+    Friend gb_selection As String = "Selection"
+    Friend gb_source As String = "Card Data Source"
+    Friend l_cards As String = "Droppable Cards"
+    Friend l_games As String = "Droppable Games"
+    Friend ll_sce As String = "Navigate to SteamCardExchange.net"
+    Friend l_notice As String = "This program use SAM(Steam Achievement Manager) to simulate a Steamwork app running to obtain trading cards."
+    Friend l_warning As String = "This program may be dangerous to your steam account. USE AT YOUR OWN RISK!"
+    Friend l_blog As String = "My Blog:"
+    Friend l_donation As String = "Donation Landing Page:"
+    Friend dgv_time As String = "Time"
+    Friend dgv_msg As String = "Message"
+    Friend webform_loading As String = "Reading Profile"
+    Friend l_github As String = "Source Code On Github:"
+    Friend ll_download As String = "Download this program only from Github. NEVER download this from other websites."
+    Friend tt_clear As String = "Clear cookies"
+    Friend tt_clipboard As String = "Grab card drop data from the source code of your badges page." & vbCrLf & "Switch to next game every 25 minutes."
+    Friend tt_profile As String = "Log in Steam account. Grab card drop data automatically."
+    Friend l_loading As String = "Loading your badges page. Please wait..." & vbCrLf & vbCrLf & "If program have no response for a long time, restart and try again."
+
 
     Public Sub init()
         Select Case System.Threading.Thread.CurrentThread.CurrentCulture.ToString()
@@ -55,7 +60,7 @@ Public Class Language
                 msg_appstop = " 停止"
                 msg_launch = "Steam 挂卡工具启动"
                 msg_loadprofileerr = "读取个人资料出错"
-                msg_nocards = "没有可掉落卡片或数据错误"
+                msg_nocards = "没有可掉落卡牌或数据错误"
                 msg_nosteam = "没有运行 Steam"
                 msg_readclip = "读取剪贴板"
                 msg_readprofile = "读取个人资料"
@@ -80,11 +85,11 @@ Public Class Language
                 t_log = "日志"
                 gb_info = "信息"
                 gb_selection = "选择"
-                gb_source = "来源"
-                l_cards = "可掉落卡片数："
+                gb_source = "卡牌数据来源"
+                l_cards = "可掉落卡牌数："
                 l_games = "可掉落游戏数："
                 ll_sce = "打开 SteamCardExchange.net"
-                l_notice = "本程序使用 SAM（Steam Achievement Manager）模拟运行 Steamwork 程序来掉落卡片。"
+                l_notice = "本程序使用 SAM（Steam Achievement Manager）模拟运行 Steamwork 程序来掉落卡牌。"
                 l_warning = "本程序可能会对你的 Steam 帐号有不良影响，使用风险自负！"
                 l_blog = "我的博客："
                 l_donation = "捐赠链接："
@@ -93,6 +98,10 @@ Public Class Language
                 webform_loading = "读取个人资料"
                 l_github = "托管在 Github 上的源码："
                 ll_download = "仅在 Github 上下载本程序，不要从其它网站下载。"
+                tt_clear = "清除保存的 Cookie 信息"
+                tt_clipboard = "在个人徽章页面查看并复制源代码，从中获取卡牌信息。" & vbCrLf & "使用剪贴板挂卡，每 25 分钟切换一次游戏。"
+                tt_profile = "登录到 Steam，自动抓取徽章页面获取卡牌信息。"
+                l_loading = "正在读取徽章页面，请稍候..." & vbCrLf & vbCrLf & "如果程序长时间没有响应，请关闭程序再试一次。"
             Case "zh-TW"
                 title = "Steam 掛卡工具"
                 info_restart = "重新開機程式生效"
@@ -100,7 +109,7 @@ Public Class Language
                 msg_appstop = " 停止"
                 msg_launch = "Steam 掛卡工具啟動"
                 msg_loadprofileerr = "讀取個人資料出錯"
-                msg_nocards = "沒有可掉落卡片或資料錯誤"
+                msg_nocards = "沒有可掉落卡牌或資料錯誤"
                 msg_nosteam = "沒有運行 Steam"
                 msg_readclip = "讀取剪貼板"
                 msg_readprofile = "讀取個人資料"
@@ -125,64 +134,23 @@ Public Class Language
                 t_log = "日誌"
                 gb_info = "信息"
                 gb_selection = "選擇"
-                gb_source = "來源"
-                l_cards = "可掉落卡片數："
+                gb_source = "卡牌資料來源"
+                l_cards = "可掉落卡牌數："
                 l_games = "可掉落遊戲數："
                 ll_sce = "打開 SteamCardExchange.net"
-                l_notice = "本程式使用 SAM（Steam Achievement Manager）類比運行 Steamwork 程式來掉落卡片。"
+                l_notice = "本程式使用 SAM（Steam Achievement Manager）類比運行 Steamwork 程式來掉落卡牌。"
                 l_warning = "本程式可能會對你的 Steam 帳號有不良影響，使用風險自負！"
                 l_blog = "我的博客："
                 l_donation = "捐贈連結："
                 dgv_time = "時間"
                 dgv_msg = "消息"
                 webform_loading = "讀取個人資料"
-                l_github = "托管在 Github 上的源碼："
-                ll_download = "僅在 Github 上下載本程序，不要從其它網站下載。"
-            Case Else
-                title = "Steam Trading Cards Farmer"
-                info_restart = "Restart program to apply"
-                msg_appstart = " starts"
-                msg_appstop = " stops"
-                msg_launch = "Steam Cards Farmer starts"
-                msg_loadprofileerr = "Read profile error"
-                msg_nocards = "No droppable cards or invalid data"
-                msg_nosteam = "Steam is not running"
-                msg_readclip = "Read clipboard"
-                msg_readprofile = "Read profile"
-                msg_reload = "Reload profile"
-                msg_running = "Steam Trading Cards Farmer is already running"
-                msg_start = "Start farming"
-                msg_stop = "Stop farming"
-                b_clear = "Clear"
-                b_select = "Select All"
-                b_unselect = "Unselect All"
-                b_inverse = "Inverse"
-                b_profile = "Read Profile"
-                b_clipboard = "Read Clipboard"
-                b_start = "Start"
-                b_stop = "Stop"
-                dgv_id = "App ID"
-                dgv_title = "Title"
-                dgv_drop = "Drop"
-                dgv_total = "Total"
-                t_home = "Home"
-                t_about = "About"
-                t_log = "Log"
-                gb_info = "Infomation"
-                gb_selection = "Selection"
-                gb_source = "Source"
-                l_cards = "Droppable Cards"
-                l_games = "Droppable Games"
-                ll_sce = "Navigate to SteamCardExchange.net"
-                l_notice = "This program use SAM(Steam Achievement Manager) to simulate a Steamwork app running to obtain trading cards."
-                l_warning = "This program may be dangerous to your steam account. USE AT YOUR OWN RISK!"
-                l_blog = "My Blog:"
-                l_donation = "Donation Landing Page:"
-                dgv_time = "Time"
-                dgv_msg = "Message"
-                webform_loading = "Reading Profile"
-                l_github = "Source Code On Github:"
-                ll_download = "Download this program only from Github. NEVER download this from other websites."
+                l_github = "託管在 Github 上的源碼："
+                ll_download = "僅在 Github 上下載本程式，不要從其它網站下載。"
+                tt_clear = "清除保存的 Cookie 資訊"
+                tt_clipboard = "在個人徽章頁面查看並複製原始程式碼，從中獲取卡牌資訊。" & vbCrLf & "使用剪貼板掛卡，每 25 分鐘切換一次遊戲。"
+                tt_profile = "登錄到 Steam，自動抓取徽章頁面獲取卡牌資訊。"
+                l_loading = "正在讀取徽章頁面，請稍候..." & vbCrLf & vbCrLf & "如果程式長時間沒有回應，請關閉程式再試一次。"
         End Select
     End Sub
 End Class

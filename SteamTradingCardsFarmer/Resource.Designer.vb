@@ -65,6 +65,36 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  查找类似于 (Icon) 的 System.Drawing.Icon 类型的本地化资源。
+        '''</summary>
+        Friend Shared ReadOnly Property icon_error() As System.Drawing.Icon
+            Get
+                Dim obj As Object = ResourceManager.GetObject("icon_error", resourceCulture)
+                Return CType(obj,System.Drawing.Icon)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  查找类似于 (Icon) 的 System.Drawing.Icon 类型的本地化资源。
+        '''</summary>
+        Friend Shared ReadOnly Property icon_normal() As System.Drawing.Icon
+            Get
+                Dim obj As Object = ResourceManager.GetObject("icon_normal", resourceCulture)
+                Return CType(obj,System.Drawing.Icon)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  查找类似于 (Icon) 的 System.Drawing.Icon 类型的本地化资源。
+        '''</summary>
+        Friend Shared ReadOnly Property icon_running() As System.Drawing.Icon
+            Get
+                Dim obj As Object = ResourceManager.GetObject("icon_running", resourceCulture)
+                Return CType(obj,System.Drawing.Icon)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  查找 System.Byte[] 类型的本地化资源。
         '''</summary>
         Friend Shared ReadOnly Property SAM() As Byte()

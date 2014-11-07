@@ -4,7 +4,7 @@ Imports System.IO
 
 Public Class WebForm
     Private Sub WebForm_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
-        Me.Text = Main.language.webform_loading
+        Me.Text = Main.langStrings.webform_loading
         WebBrowser.IsWebBrowserContextMenuEnabled = False
         WebBrowser.Navigate("https://steamcommunity.com/login/home/#mainBody")
     End Sub

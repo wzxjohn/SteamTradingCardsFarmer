@@ -25,13 +25,14 @@ Partial Class Main
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Main))
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.ButtonSelect = New System.Windows.Forms.Button()
         Me.ButtonUnselect = New System.Windows.Forms.Button()
         Me.ButtonInverse = New System.Windows.Forms.Button()
@@ -39,6 +40,7 @@ Partial Class Main
         Me.ButtonClipboard = New System.Windows.Forms.Button()
         Me.TabControlMain = New System.Windows.Forms.TabControl()
         Me.TabPageHome = New System.Windows.Forms.TabPage()
+        Me.LabelLoading = New System.Windows.Forms.Label()
         Me.GroupBoxSource = New System.Windows.Forms.GroupBox()
         Me.ButtonClear = New System.Windows.Forms.Button()
         Me.GroupBoxSelection = New System.Windows.Forms.GroupBox()
@@ -76,6 +78,9 @@ Partial Class Main
         Me.TimerForProfile = New System.Windows.Forms.Timer(Me.components)
         Me.NotifyIconMain = New System.Windows.Forms.NotifyIcon(Me.components)
         Me.CheckBoxWebListener = New System.Windows.Forms.CheckBox()
+        Me.ToolTipProfile = New System.Windows.Forms.ToolTip(Me.components)
+        Me.ToolTipClear = New System.Windows.Forms.ToolTip(Me.components)
+        Me.ToolTipClipboard = New System.Windows.Forms.ToolTip(Me.components)
         Me.Form1BindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.TabControlMain.SuspendLayout()
         Me.TabPageHome.SuspendLayout()
@@ -131,6 +136,7 @@ Partial Class Main
         '
         'TabPageHome
         '
+        Me.TabPageHome.Controls.Add(Me.LabelLoading)
         Me.TabPageHome.Controls.Add(Me.GroupBoxSource)
         Me.TabPageHome.Controls.Add(Me.GroupBoxSelection)
         Me.TabPageHome.Controls.Add(Me.ButtonStartStop)
@@ -139,6 +145,14 @@ Partial Class Main
         resources.ApplyResources(Me.TabPageHome, "TabPageHome")
         Me.TabPageHome.Name = "TabPageHome"
         Me.TabPageHome.UseVisualStyleBackColor = True
+        '
+        'LabelLoading
+        '
+        Me.LabelLoading.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.LabelLoading.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        resources.ApplyResources(Me.LabelLoading, "LabelLoading")
+        Me.LabelLoading.Name = "LabelLoading"
+        Me.LabelLoading.UseWaitCursor = True
         '
         'GroupBoxSource
         '
@@ -229,10 +243,10 @@ Partial Class Main
         Me.dgvList.MultiSelect = False
         Me.dgvList.Name = "dgvList"
         Me.dgvList.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.[Single]
-        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle5.Font = New System.Drawing.Font("微软雅黑", 9.0!)
-        DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgvList.RowHeadersDefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle6.Font = New System.Drawing.Font("微软雅黑", 9.0!)
+        DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvList.RowHeadersDefaultCellStyle = DataGridViewCellStyle6
         Me.dgvList.RowHeadersVisible = False
         Me.dgvList.RowTemplate.Height = 23
         Me.dgvList.ShowCellErrors = False
@@ -263,6 +277,8 @@ Partial Class Main
         '
         'ColAppId
         '
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.ColAppId.DefaultCellStyle = DataGridViewCellStyle3
         Me.ColAppId.FillWeight = 55.0!
         resources.ApplyResources(Me.ColAppId, "ColAppId")
         Me.ColAppId.Name = "ColAppId"
@@ -282,8 +298,8 @@ Partial Class Main
         '
         'ColDrop
         '
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        Me.ColDrop.DefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.ColDrop.DefaultCellStyle = DataGridViewCellStyle4
         Me.ColDrop.FillWeight = 50.0!
         resources.ApplyResources(Me.ColDrop, "ColDrop")
         Me.ColDrop.Name = "ColDrop"
@@ -293,8 +309,8 @@ Partial Class Main
         '
         'ColTotal
         '
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        Me.ColTotal.DefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.ColTotal.DefaultCellStyle = DataGridViewCellStyle5
         Me.ColTotal.FillWeight = 50.0!
         resources.ApplyResources(Me.ColTotal, "ColTotal")
         Me.ColTotal.Name = "ColTotal"
@@ -395,14 +411,14 @@ Partial Class Main
         Me.dgvLog.AllowUserToResizeRows = False
         Me.dgvLog.BackgroundColor = System.Drawing.SystemColors.Window
         Me.dgvLog.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle6.Font = New System.Drawing.Font("微软雅黑", 9.0!)
-        DataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgvLog.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle7.Font = New System.Drawing.Font("微软雅黑", 9.0!)
+        DataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvLog.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle7
         resources.ApplyResources(Me.dgvLog, "dgvLog")
         Me.dgvLog.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
         Me.dgvLog.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn3, Me.DataGridViewTextBoxColumn4})
@@ -420,8 +436,8 @@ Partial Class Main
         '
         'DataGridViewTextBoxColumn3
         '
-        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        Me.DataGridViewTextBoxColumn3.DefaultCellStyle = DataGridViewCellStyle7
+        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        Me.DataGridViewTextBoxColumn3.DefaultCellStyle = DataGridViewCellStyle8
         Me.DataGridViewTextBoxColumn3.FillWeight = 150.0!
         resources.ApplyResources(Me.DataGridViewTextBoxColumn3, "DataGridViewTextBoxColumn3")
         Me.DataGridViewTextBoxColumn3.Name = "DataGridViewTextBoxColumn3"
@@ -430,8 +446,8 @@ Partial Class Main
         '
         'DataGridViewTextBoxColumn4
         '
-        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        Me.DataGridViewTextBoxColumn4.DefaultCellStyle = DataGridViewCellStyle8
+        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        Me.DataGridViewTextBoxColumn4.DefaultCellStyle = DataGridViewCellStyle9
         Me.DataGridViewTextBoxColumn4.FillWeight = 555.0!
         resources.ApplyResources(Me.DataGridViewTextBoxColumn4, "DataGridViewTextBoxColumn4")
         Me.DataGridViewTextBoxColumn4.Name = "DataGridViewTextBoxColumn4"
@@ -521,14 +537,18 @@ Partial Class Main
     Friend WithEvents DataGridViewTextBoxColumn3 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn4 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents ButtonClear As System.Windows.Forms.Button
+    Friend WithEvents LabelGithub As System.Windows.Forms.Label
+    Friend WithEvents LinkLabelGtihub As System.Windows.Forms.LinkLabel
+    Friend WithEvents LinkLabelDownload As System.Windows.Forms.LinkLabel
     Friend WithEvents ColFarming As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents ColCheckbox As System.Windows.Forms.DataGridViewCheckBoxColumn
     Friend WithEvents ColAppId As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents ColTitle As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents ColDrop As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents ColTotal As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents LabelGithub As System.Windows.Forms.Label
-    Friend WithEvents LinkLabelGtihub As System.Windows.Forms.LinkLabel
-    Friend WithEvents LinkLabelDownload As System.Windows.Forms.LinkLabel
+    Friend WithEvents LabelLoading As System.Windows.Forms.Label
+    Friend WithEvents ToolTipProfile As System.Windows.Forms.ToolTip
+    Friend WithEvents ToolTipClear As System.Windows.Forms.ToolTip
+    Friend WithEvents ToolTipClipboard As System.Windows.Forms.ToolTip
 
 End Class
