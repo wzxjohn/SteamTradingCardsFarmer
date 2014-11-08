@@ -81,7 +81,7 @@ Public Class Main
         log(langStrings.msg_launch, False)
 
         TimerForClip.Interval = 25 * 60 * 1000 '设置剪贴板方式切换游戏时间
-        TimerForProfile.Interval = 0.5 * 60 * 1000 '设置个人资料方式切换游戏时间
+        TimerForProfile.Interval = 15 * 60 * 1000 '设置个人资料方式切换游戏时间
 
         dgvList.SelectionMode = DataGridViewSelectionMode.FullRowSelect '设置多行选择
         dgvLog.SelectionMode = DataGridViewSelectionMode.FullRowSelect '设置多行选择
