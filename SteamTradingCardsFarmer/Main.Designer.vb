@@ -81,6 +81,8 @@ Partial Class Main
         Me.ToolTipProfile = New System.Windows.Forms.ToolTip(Me.components)
         Me.ToolTipClear = New System.Windows.Forms.ToolTip(Me.components)
         Me.ToolTipClipboard = New System.Windows.Forms.ToolTip(Me.components)
+        Me.ProgressBarLoading = New System.Windows.Forms.ProgressBar()
+        Me.PanelLoading = New System.Windows.Forms.Panel()
         Me.Form1BindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.TabControlMain.SuspendLayout()
         Me.TabPageHome.SuspendLayout()
@@ -91,6 +93,7 @@ Partial Class Main
         Me.TabPageAbout.SuspendLayout()
         Me.TabPageLog.SuspendLayout()
         CType(Me.dgvLog, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelLoading.SuspendLayout()
         CType(Me.Form1BindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -136,7 +139,7 @@ Partial Class Main
         '
         'TabPageHome
         '
-        Me.TabPageHome.Controls.Add(Me.LabelLoading)
+        Me.TabPageHome.Controls.Add(Me.PanelLoading)
         Me.TabPageHome.Controls.Add(Me.GroupBoxSource)
         Me.TabPageHome.Controls.Add(Me.GroupBoxSelection)
         Me.TabPageHome.Controls.Add(Me.ButtonStartStop)
@@ -148,11 +151,9 @@ Partial Class Main
         '
         'LabelLoading
         '
-        Me.LabelLoading.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.LabelLoading.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.LabelLoading.BackColor = System.Drawing.Color.Transparent
         resources.ApplyResources(Me.LabelLoading, "LabelLoading")
         Me.LabelLoading.Name = "LabelLoading"
-        Me.LabelLoading.UseWaitCursor = True
         '
         'GroupBoxSource
         '
@@ -471,6 +472,21 @@ Partial Class Main
         Me.CheckBoxWebListener.Name = "CheckBoxWebListener"
         Me.CheckBoxWebListener.UseVisualStyleBackColor = True
         '
+        'ProgressBarLoading
+        '
+        Me.ProgressBarLoading.ForeColor = System.Drawing.Color.White
+        resources.ApplyResources(Me.ProgressBarLoading, "ProgressBarLoading")
+        Me.ProgressBarLoading.Name = "ProgressBarLoading"
+        '
+        'PanelLoading
+        '
+        Me.PanelLoading.BackColor = System.Drawing.Color.White
+        Me.PanelLoading.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.PanelLoading.Controls.Add(Me.LabelLoading)
+        Me.PanelLoading.Controls.Add(Me.ProgressBarLoading)
+        resources.ApplyResources(Me.PanelLoading, "PanelLoading")
+        Me.PanelLoading.Name = "PanelLoading"
+        '
         'Form1BindingSource
         '
         Me.Form1BindingSource.DataSource = GetType(SteamTradingCardsFarmer.Main)
@@ -496,6 +512,7 @@ Partial Class Main
         Me.TabPageAbout.PerformLayout()
         Me.TabPageLog.ResumeLayout(False)
         CType(Me.dgvLog, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelLoading.ResumeLayout(False)
         CType(Me.Form1BindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -550,5 +567,7 @@ Partial Class Main
     Friend WithEvents ToolTipProfile As System.Windows.Forms.ToolTip
     Friend WithEvents ToolTipClear As System.Windows.Forms.ToolTip
     Friend WithEvents ToolTipClipboard As System.Windows.Forms.ToolTip
+    Friend WithEvents ProgressBarLoading As System.Windows.Forms.ProgressBar
+    Friend WithEvents PanelLoading As System.Windows.Forms.Panel
 
 End Class

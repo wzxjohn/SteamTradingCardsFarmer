@@ -7,7 +7,7 @@ Imports System.Threading
 Imports System.Runtime.InteropServices
 
 Public Class Main
-    Private VERSION As String = "0.1" '定义版本号
+    Private VERSION As String = "0.2" '定义版本号
     Private SAM_EXE_NAME As String = "SAM.STCF" '定义SAM文件名
     Private SAM_DLL_NAME As String = "SAM.API" '定义SAM API文件名
     Private SAMEXEPath As String = Path.GetTempPath() & SAM_EXE_NAME & ".exe" '定义SAM路径（临时文件夹）
@@ -27,6 +27,7 @@ Public Class Main
     Friend cookieContainer As CookieContainer 'CookieContainer
     Friend cookieText As String '从网页中获取到的Cookie文本
     Friend badgesURL As String '个人资料页面地址
+    Friend logout As Boolean = False '是否退出
 
     Private threadGetCardsData As New System.Threading.Thread(AddressOf getCardsData) '分析卡片数据线程
     Private threadGetHtmlSource As New System.Threading.Thread(AddressOf getHtmlSource) '拉取徽章页面线程
@@ -79,8 +80,8 @@ Public Class Main
 
         log(langStrings.msg_launch, False)
 
-        TimerForClip.Interval = 60 * 25 * 1000 '设置剪贴板方式切换游戏时间
-        TimerForProfile.Interval = 60 * 15 * 1000 '设置个人资料方式切换游戏时间
+        TimerForClip.Interval = 25 * 60 * 1000 '设置剪贴板方式切换游戏时间
+        TimerForProfile.Interval = 0.5 * 60 * 1000 '设置个人资料方式切换游戏时间
 
         dgvList.SelectionMode = DataGridViewSelectionMode.FullRowSelect '设置多行选择
         dgvLog.SelectionMode = DataGridViewSelectionMode.FullRowSelect '设置多行选择
@@ -143,7 +144,6 @@ Public Class Main
         '先关闭所有按键
         enableButton(False)
 
-        dgvList.Rows.Clear() '清除游戏列表
         LinkLabelSCE.Enabled = False
 
         '清空info信息
@@ -152,8 +152,6 @@ Public Class Main
 
         '如果html源码数据不存在，则进行一些处理
         If htmlSource Is Nothing Or htmlSource = "" Or htmlSource Is DBNull.Value Then
-            enableButton(False)
-
             TimerForClip.Enabled = False
             TimerForProfile.Enabled = False
 
@@ -161,35 +159,41 @@ Public Class Main
             ButtonProfile.Enabled = True
             ButtonClear.Enabled = True
 
-            NotifyIconMain.Icon = My.Resources.Resource.icon_error
+            If reloadingProfile Then
+                NotifyIconMain.Icon = My.Resources.Resource.icon_error
+            End If
             log(langStrings.msg_nocards, True)
 
             Exit Sub '跳过后续步骤
         End If
 
         Dim m As Match = Regex.Match(Replace(htmlSource, Chr(10), "", , , vbBinaryCompare), _
-                            "badge_row_overlay"" .*?gamecards\/(\d+)\/.*?progress_info_bold"">(\d+)?.*?card_drop_info_header.*?(\d+).*?badge_title"">(.*?)\&nbsp;.*?style=""clear", _
+                            "progress_info_bold"">(\d+)?.*?card_drop_info_gamebadge_(\d+)_.*?card_drop_info_header.*?(\d+).*?""badge_title"">(.*?)\&n", _
                             RegexOptions.IgnoreCase Or RegexOptions.IgnorePatternWhitespace)
 
         Dim stillFarm As Boolean = False
 
         Do While m.Success '如果成功匹配，则进行添加到列表的任务
-            If Val(m.Groups(2).Value) <= Val(m.Groups(3).Value) And Val(m.Groups(2).Value) > 0 Then '掉落卡片能掉落卡片时才添加视图中
+            If Val(m.Groups(1).Value) <= Val(m.Groups(3).Value) And Val(m.Groups(1).Value) > 0 Then '掉落卡片能掉落卡片时才添加视图中
+
                 '将每个游戏的卡片资料加入到列表中
                 '使用invoke进行操作
-                dgvList.Invoke(New dgvListAddRowDelgate(AddressOf dgvLogAddRowInvoke), New Object() {dgvList, Nothing, IIf(reloadingProfile, False, True), Val(m.Groups(1).Value), m.Groups(4).Value.ToString().Trim(), Val(m.Groups(2).Value), Val(m.Groups(3).Value)})
+                dgvList.Invoke(New dgvListAddRowDelgate(AddressOf dgvLogAddRowInvoke), New Object() {dgvList, Nothing, IIf(reloadingProfile, False, True), Val(m.Groups(2).Value), m.Groups(4).Value.ToString().Trim(), Val(m.Groups(1).Value), Val(m.Groups(3).Value)})
 
                 avaliableGamesCount = avaliableGamesCount + 1
-                avaliableCardsCount = avaliableCardsCount + Val(m.Groups(2).Value)
+                avaliableCardsCount = avaliableCardsCount + Val(m.Groups(1).Value)
+
+                '如果是重读取资料的情况
                 If reloadingProfile Then
+                    '在之前的打上勾的游戏数组中查询，如果存在则勾上
                     For Each item In farmAppIds
-                        If Val(item) = Val(m.Groups(1).Value) Then
+                        If Val(item) = Val(m.Groups(2).Value) Then
                             dgvList.Rows.Item(avaliableGamesCount - 1).Cells(1).Value = True
                         End If
                     Next
 
                     '如果之前挂机的游戏没挂完，这里设置一个状态
-                    If m.Groups(1).Value.Trim() = farmAppIds(farmingAppNumInArray).ToString().Trim() Then
+                    If Val(m.Groups(2).Value) = Val(farmAppIds(farmingAppNumInArray)) Then
                         stillFarm = True
                     End If
                 End If
@@ -209,7 +213,6 @@ Public Class Main
 
         '如果当前能够挂卡的游戏数量为0，则提示并退出；否则将一些按钮设置为可用状态
         If (avaliableGamesCount = 0) Or (farmAppIds.Length <= 1 And farmAppIds(0) Is Nothing) Then
-            enableButton(True)
 
             '关闭定时器
             TimerForClip.Enabled = False
@@ -222,7 +225,9 @@ Public Class Main
 
             killSAM()
 
-            NotifyIconMain.Icon = My.Resources.Resource.icon_error
+            If reloadingProfile Then
+                NotifyIconMain.Icon = My.Resources.Resource.icon_error
+            End If
             log(langStrings.msg_nocards, True)
         ElseIf Not reloadingProfile Then '如果现在正在挂卡中（个人资料），跳过改变按钮
             enableButton(True)
@@ -248,7 +253,7 @@ Public Class Main
         End If
 
         reloadingProfile = False '将重新读取个人资料标记为假，完成一次完整的重读取个人资料的过程
-        LabelLoading.Visible = False '隐藏读取提示
+        loadingMsg(False) '隐藏读取提示
 
 
         '终止两个线程
@@ -351,10 +356,16 @@ Public Class Main
             NotifyIconMain.Icon = My.Resources.Resource.icon_normal
         End If
     End Sub
-
+    Private Sub clearInfoAndList()
+        dgvList.Rows.Clear() '清除游戏列表
+        LabelCards.Text = 0
+        LabelGames.Text = 0
+    End Sub
 
     '读取剪贴板数据按钮监听
     Private Sub ButtonClipboard_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ButtonClipboard.Click
+        clearInfoAndList()
+
         htmlSource = Nothing
         ButtonClipboard.Enabled = False
         ButtonProfile.Enabled = False
@@ -372,6 +383,8 @@ Public Class Main
 
     '从个人资料读取
     Private Sub ButtonProfile_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ButtonProfile.Click
+        clearInfoAndList()
+
         ButtonClipboard.Enabled = False
         ButtonProfile.Enabled = False
         ButtonClear.Enabled = False
@@ -397,6 +410,7 @@ Public Class Main
     Protected Sub TimerForProfile_Tick(ByVal sender As Object, ByVal e As System.EventArgs) Handles TimerForProfile.Tick
         reloadingProfile = True '设置重载个人资料
         log(langStrings.msg_reload, False)
+        dgvList.Rows.Clear() '清除游戏列表
         threadGetHtmlSource = New System.Threading.Thread(AddressOf getHtmlSource)
         threadGetHtmlSource.IsBackground = True
         threadGetHtmlSource.Priority = Threading.ThreadPriority.BelowNormal
@@ -630,13 +644,16 @@ Public Class Main
             Catch WebException As Exception
                 '如果拉取网页发生了异常
                 log(langStrings.msg_loadprofileerr, True)
+                If reloadingProfile Then
+                    NotifyIconMain.Icon = My.Resources.Resource.icon_error
+                End If
 
                 htmlSource = Nothing
 
                 ButtonClipboard.Enabled = True
                 ButtonProfile.Enabled = True
                 ButtonClear.Enabled = True
-                LabelLoading.Visible = False
+                loadingMsg(False)
             End Try
         End While
     End Sub
@@ -646,17 +663,17 @@ Public Class Main
         System.Diagnostics.Process.Start("http://www.steamcardexchange.net/index.php?gamepage-appid-" & Trim(Str(selectedAppId)))
     End Sub
     Private Sub LinkLabelBlog_LinkClicked(ByVal sender As System.Object, ByVal e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles LinkLabelBlog.LinkClicked
-        System.Diagnostics.Process.Start("http://xiaoxia.de/")
+        System.Diagnostics.Process.Start(LinkLabelBlog.Text)
     End Sub
 
     Private Sub LinkLabelDonation_LinkClicked(ByVal sender As System.Object, ByVal e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles LinkLabelDonation.LinkClicked
-        System.Diagnostics.Process.Start("http://xiaoxia.de/upload/donation.html")
+        System.Diagnostics.Process.Start(LinkLabelDonation.Text)
     End Sub
     Private Sub LinkLabelSAM_LinkClicked(ByVal sender As System.Object, ByVal e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles LinkLabelSAM.LinkClicked
-        System.Diagnostics.Process.Start("http://gib.me/sam/")
+        System.Diagnostics.Process.Start(LinkLabelSAM.Text)
     End Sub
     Private Sub LinkLabelGithub_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabelGtihub.LinkClicked
-        System.Diagnostics.Process.Start("http://github.com/neverweep/SteamTradingCardsFarmer")
+        System.Diagnostics.Process.Start(LabelGithub.Text)
     End Sub
     Private Sub LinkLabelDownload_LinkClicked_1(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabelDownload.LinkClicked
         System.Diagnostics.Process.Start("https://github.com/neverweep/SteamTradingCardsFarmer/raw/master/SteamTradingCardsFarmer/bin/Debug/SteamTradingCardsFarmer.exe")
@@ -665,52 +682,68 @@ Public Class Main
     '监听网页窗口是否关闭的事件
     Private Sub CheckBoxWebListener_CheckedChanged(ByVal sender As Object, ByVal e As EventArgs) Handles CheckBoxWebListener.CheckedChanged
         If CheckBoxWebListener.Checked = True Then
-            '如果取得了cookie
-            If cookieText <> Nothing And cookieText <> "" Then
+            If logout = False Then
+                '如果取得了cookie
+                If cookieText <> Nothing And cookieText <> "" Then
 
-                LabelLoading.Visible = True
+                    loadingMsg(True)
 
-                '将其处理，加到CookieContainer中
-                cookieContainer = New CookieContainer()
-                Dim cookies() = cookieText.Split(";")
+                    '将其处理，加到CookieContainer中
+                    cookieContainer = New CookieContainer()
+                    Dim cookies() = cookieText.Split(";")
 
-                For Each cookie In cookies
-                    If (Trim(cookie) <> "") Then
-                        Dim cookieNameValue() = cookie.Split("=")
-                        Dim ck = New Cookie(cookieNameValue(0).Trim().ToString(), cookieNameValue(1).Trim().ToString())
-                        ck.Domain = "steamcommunity.com"
-                        cookieContainer.Add(ck)
-                    End If
-                Next
+                    For Each cookie In cookies
+                        If (Trim(cookie) <> "") Then
+                            Dim cookieNameValue() = cookie.Split("=")
+                            Dim ck = New Cookie(cookieNameValue(0).Trim().ToString(), cookieNameValue(1).Trim().ToString())
+                            ck.Domain = "steamcommunity.com"
+                            cookieContainer.Add(ck)
+                        End If
+                    Next
 
-                threadGetHtmlSource = New System.Threading.Thread(AddressOf getHtmlSource)
-                threadGetHtmlSource.IsBackground = True
-                threadGetHtmlSource.Priority = Threading.ThreadPriority.BelowNormal
-                threadGetHtmlSource.Start()
+                    threadGetHtmlSource = New System.Threading.Thread(AddressOf getHtmlSource)
+                    threadGetHtmlSource.IsBackground = True
+                    threadGetHtmlSource.Priority = Threading.ThreadPriority.BelowNormal
+                    threadGetHtmlSource.Start()
+                Else
+                    '如果没得到html数据
+                    log(langStrings.msg_nocards, True)
+
+                    ButtonClipboard.Enabled = True
+                    ButtonProfile.Enabled = True
+                    ButtonClear.Enabled = True
+
+                    loadingMsg(False)
+                End If
+
+                cookieText = Nothing
             Else
-                '如果没得到html数据
-                NotifyIconMain.Icon = My.Resources.Resource.icon_error
-                log(langStrings.msg_nocards, True)
-
+                logout = False
                 ButtonClipboard.Enabled = True
                 ButtonProfile.Enabled = True
                 ButtonClear.Enabled = True
             End If
-
-            cookieText = Nothing
-            CheckBoxWebListener.Checked = False
         End If
+
+        CheckBoxWebListener.Checked = False
     End Sub
     '清除Cookie按钮点击事件
     Private Sub ButtonClear_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ButtonClear.Click
-        Dim i As Integer = 0
-        InternetSetCookie("http://steamcommunity.com", Nothing, Nothing)
-        InternetSetCookie("https://steamcommunity.com", Nothing, Nothing)
-        MsgBox(langStrings.info_restart, , langStrings.title)
+        clearInfoAndList()
+
+        logout = True
+        ButtonClipboard.Enabled = False
+        ButtonProfile.Enabled = False
+        ButtonClear.Enabled = False
+        enableButton(False)
+        ButtonStartStop.Enabled = False
+        log(langStrings.msg_readprofile, False)
+        Me.Enabled = False
+        WebForm.Show()
     End Sub
-    '引入Dll删除Cookie
-    <DllImport("wininet.dll", CharSet:=CharSet.Auto, SetLastError:=True)> _
-    Public Shared Function InternetSetCookie(ByVal lpszUrl As String, _
-      ByVal lpszCookieName As String, ByVal lpszCookieData As String) As Boolean
-    End Function
+
+    Private Sub loadingMsg(show As Boolean)
+        PanelLoading.Visible = show
+        ProgressBarLoading.Style = IIf(show, ProgressBarStyle.Marquee, ProgressBarStyle.Blocks)
+    End Sub
 End Class

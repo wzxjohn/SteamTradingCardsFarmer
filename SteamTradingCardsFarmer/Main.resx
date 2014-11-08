@@ -229,7 +229,7 @@
     <value>6, 20</value>
   </data>
   <data name="ButtonProfile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>78, 36</value>
+    <value>72, 36</value>
   </data>
   <data name="ButtonProfile.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -283,27 +283,20 @@
     <value>NoControl</value>
   </data>
   <data name="LabelLoading.Location" type="System.Drawing.Point, System.Drawing">
-    <value>149, 87</value>
-  </data>
-  <data name="LabelLoading.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>20, 20, 20, 20</value>
+    <value>19, 4</value>
   </data>
   <data name="LabelLoading.Size" type="System.Drawing.Size, System.Drawing">
-    <value>442, 93</value>
+    <value>439, 61</value>
   </data>
   <data name="LabelLoading.TabIndex" type="System.Int32, mscorlib">
     <value>16</value>
   </data>
   <data name="LabelLoading.Text" xml:space="preserve">
     <value>Loading your badges page. Please wait...
-
 If program have no response for a long time, restart and try again.</value>
   </data>
   <data name="LabelLoading.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleCenter</value>
-  </data>
-  <data name="LabelLoading.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
   </data>
   <data name="&gt;&gt;LabelLoading.Name" xml:space="preserve">
     <value>LabelLoading</value>
@@ -312,9 +305,57 @@ If program have no response for a long time, restart and try again.</value>
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;LabelLoading.Parent" xml:space="preserve">
-    <value>TabPageHome</value>
+    <value>PanelLoading</value>
   </data>
   <data name="&gt;&gt;LabelLoading.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="ProgressBarLoading.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="ProgressBarLoading.Location" type="System.Drawing.Point, System.Drawing">
+    <value>37, 64</value>
+  </data>
+  <data name="ProgressBarLoading.Size" type="System.Drawing.Size, System.Drawing">
+    <value>403, 16</value>
+  </data>
+  <data name="ProgressBarLoading.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="&gt;&gt;ProgressBarLoading.Name" xml:space="preserve">
+    <value>ProgressBarLoading</value>
+  </data>
+  <data name="&gt;&gt;ProgressBarLoading.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ProgressBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ProgressBarLoading.Parent" xml:space="preserve">
+    <value>PanelLoading</value>
+  </data>
+  <data name="&gt;&gt;ProgressBarLoading.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="PanelLoading.Location" type="System.Drawing.Point, System.Drawing">
+    <value>129, 84</value>
+  </data>
+  <data name="PanelLoading.Size" type="System.Drawing.Size, System.Drawing">
+    <value>483, 99</value>
+  </data>
+  <data name="PanelLoading.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="PanelLoading.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;PanelLoading.Name" xml:space="preserve">
+    <value>PanelLoading</value>
+  </data>
+  <data name="&gt;&gt;PanelLoading.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;PanelLoading.Parent" xml:space="preserve">
+    <value>TabPageHome</value>
+  </data>
+  <data name="&gt;&gt;PanelLoading.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <data name="ButtonClear.Font" type="System.Drawing.Font, System.Drawing">
@@ -324,16 +365,16 @@ If program have no response for a long time, restart and try again.</value>
     <value>NoControl</value>
   </data>
   <data name="ButtonClear.Location" type="System.Drawing.Point, System.Drawing">
-    <value>90, 20</value>
+    <value>83, 20</value>
   </data>
   <data name="ButtonClear.Size" type="System.Drawing.Size, System.Drawing">
-    <value>54, 36</value>
+    <value>61, 36</value>
   </data>
   <data name="ButtonClear.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
   </data>
   <data name="ButtonClear.Text" xml:space="preserve">
-    <value>Clear</value>
+    <value>Logout</value>
   </data>
   <data name="&gt;&gt;ButtonClear.Name" xml:space="preserve">
     <value>ButtonClear</value>

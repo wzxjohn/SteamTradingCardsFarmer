@@ -16,25 +16,38 @@ Public Class WebForm
     End Sub
 
     Public Sub WebBrowser_Navigated(ByVal sender As Object, ByVal e As WebBrowserNavigatedEventArgs) Handles WebBrowser.Navigated
-        Me.Text = WebBrowser.Url.ToString
-        Dim m As Match = Regex.Match(WebBrowser.Url.ToString, _
-                           "(https?:\/\/steamcommunity.com\/((id\/.*?)|(profiles\/\d+))\/home)", _
-                           RegexOptions.IgnoreCase Or RegexOptions.IgnorePatternWhitespace)
-        If m.Success Then
+        If Not Main.logout Then
+            Me.Text = WebBrowser.Url.ToString
+            Dim m As Match = Regex.Match(WebBrowser.Url.ToString, _
+                               "(https?:\/\/steamcommunity.com\/((id\/.*?)|(profiles\/\d+))\/home)", _
+                               RegexOptions.IgnoreCase Or RegexOptions.IgnorePatternWhitespace)
+            If m.Success Then
 
-            Dim profileURL = m.Groups(1).ToString().Trim().Replace("home", "badges")
-            Dim cookieText = WebBrowser.Document.Cookie
+                Dim profileURL = m.Groups(1).ToString().Trim().Replace("home", "badges")
+                Dim cookieText = WebBrowser.Document.Cookie
 
-            cookieText = Replace(cookieText, Chr(10), "", , , vbBinaryCompare) '删除换行和控制字符
-            cookieText = Replace(cookieText, Chr(13), "", , , vbBinaryCompare)
-            cookieText = Replace(cookieText, ",", "%2C")
+                cookieText = Replace(cookieText, Chr(10), "", , , vbBinaryCompare) '删除换行和控制字符
+                cookieText = Replace(cookieText, Chr(13), "", , , vbBinaryCompare)
+                cookieText = Replace(cookieText, ",", "%2C")
 
-            Main.badgesURL = profileURL
-            Main.cookieText = cookieText
+                Main.badgesURL = profileURL
+                Main.cookieText = cookieText
 
-            Me.Close()
-        ElseIf Not WebBrowser.Url.ToString.StartsWith("https://steamcommunity.com/login/home") Then
-            WebBrowser.Navigate("https://steamcommunity.com/login/home/#mainBody")
+                Me.Close()
+            ElseIf Not WebBrowser.Url.ToString.StartsWith("https://steamcommunity.com/login/home") Then
+                WebBrowser.Navigate("https://steamcommunity.com/login/home/#mainBody")
+            End If
+        End If
+    End Sub
+
+    Private Sub WebBrowser_DocumentCompleted(sender As Object, e As WebBrowserDocumentCompletedEventArgs) Handles WebBrowser.DocumentCompleted
+        If Main.logout Then
+            Me.Text = WebBrowser.Url.ToString
+            If WebBrowser.Url.ToString = "http://steamcommunity.com/" Then
+                Me.Close()
+            Else
+                WebBrowser.Navigate("javascript:Logout();")
+            End If
         End If
     End Sub
 End Class
