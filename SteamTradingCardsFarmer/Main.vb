@@ -7,7 +7,7 @@ Imports System.Threading
 Imports System.Runtime.InteropServices
 
 Public Class Main
-    Private VERSION As String = "0.2" '定义版本号
+    Private VERSION As String = "0.2.1" '定义版本号
     Private SAM_EXE_NAME As String = "SAM.STCF" '定义SAM文件名
     Private SAM_DLL_NAME As String = "SAM.API" '定义SAM API文件名
     Private SAMEXEPath As String = Path.GetTempPath() & SAM_EXE_NAME & ".exe" '定义SAM路径（临时文件夹）
@@ -35,6 +35,12 @@ Public Class Main
 
     '程序的初始化
     Private Sub Main_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        'Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
+
+        '初始化界面语言
+        langStrings.init()
+        Me.Text = langStrings.title & " " & VERSION
+
         '判断程序是否已在运行，如果已经在运行就退出程序
         Dim process As Process '定义进程
         If (IsInstanceRunning()) Then
@@ -44,9 +50,6 @@ Public Class Main
             process = Nothing
         End If
 
-        '初始化界面语言
-        langStrings.init()
-        Me.Text = langStrings.title & " " & VERSION
         TabPageHome.Text = langStrings.t_home
         TabPageAbout.Text = langStrings.t_about
         TabPageLog.Text = langStrings.t_log
@@ -632,6 +635,8 @@ Public Class Main
                 '将分页的HTML拼接在一起
                 htmlSource = htmlSource & currentHtmlSource
 
+                NotifyIconMain.Icon = My.Resources.Resource.icon_normal
+
                 '如果没有成功匹配，说明没有下一页了，直接开始处理html数据
                 If Not mm.Success Then
                     multiPages = False
@@ -646,14 +651,14 @@ Public Class Main
                 log(langStrings.msg_loadprofileerr, True)
                 If reloadingProfile Then
                     NotifyIconMain.Icon = My.Resources.Resource.icon_error
+                Else
+                    ButtonClipboard.Enabled = True
+                    ButtonProfile.Enabled = True
+                    ButtonClear.Enabled = True
+                    loadingMsg(False)
                 End If
 
                 htmlSource = Nothing
-
-                ButtonClipboard.Enabled = True
-                ButtonProfile.Enabled = True
-                ButtonClear.Enabled = True
-                loadingMsg(False)
             End Try
         End While
     End Sub
@@ -672,8 +677,8 @@ Public Class Main
     Private Sub LinkLabelSAM_LinkClicked(ByVal sender As System.Object, ByVal e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles LinkLabelSAM.LinkClicked
         System.Diagnostics.Process.Start(LinkLabelSAM.Text)
     End Sub
-    Private Sub LinkLabelGithub_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabelGtihub.LinkClicked
-        System.Diagnostics.Process.Start(LabelGithub.Text)
+    Private Sub LinkLabelGithub_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabelGithub.LinkClicked
+        System.Diagnostics.Process.Start(LinkLabelGithub.Text)
     End Sub
     Private Sub LinkLabelDownload_LinkClicked_1(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabelDownload.LinkClicked
         System.Diagnostics.Process.Start("https://github.com/neverweep/SteamTradingCardsFarmer/raw/master/SteamTradingCardsFarmer/bin/Debug/SteamTradingCardsFarmer.exe")

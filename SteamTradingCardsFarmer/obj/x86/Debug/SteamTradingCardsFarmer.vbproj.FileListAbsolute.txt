@@ -18,6 +18,8 @@ E:\Visual Studio 2013\Projects\SteamTradingCardsFarmer\SteamTradingCardsFarmer\b
 E:\Visual Studio 2013\Projects\SteamTradingCardsFarmer\SteamTradingCardsFarmer\bin\Debug\SteamTradingCardsFarmer.exe.manifest
 E:\Visual Studio 2013\Projects\SteamTradingCardsFarmer\SteamTradingCardsFarmer\bin\Debug\SteamTradingCardsFarmer.application
 E:\Visual Studio 2013\Projects\SteamTradingCardsFarmer\SteamTradingCardsFarmer\bin\Debug\SteamTradingCardsFarmer.exe
+E:\Visual Studio 2013\Projects\SteamTradingCardsFarmer\SteamTradingCardsFarmer\bin\Debug\SteamTradingCardsFarmer.pdb
+E:\Visual Studio 2013\Projects\SteamTradingCardsFarmer\SteamTradingCardsFarmer\bin\Debug\SteamTradingCardsFarmer.xml
 E:\Visual Studio 2013\Projects\SteamTradingCardsFarmer\SteamTradingCardsFarmer\obj\x86\Debug\SteamTradingCardsFarmer.Main.resources
 E:\Visual Studio 2013\Projects\SteamTradingCardsFarmer\SteamTradingCardsFarmer\obj\x86\Debug\SteamTradingCardsFarmer.Resources.resources
 E:\Visual Studio 2013\Projects\SteamTradingCardsFarmer\SteamTradingCardsFarmer\obj\x86\Debug\SteamTradingCardsFarmer.Resource.resources
@@ -28,5 +30,3 @@ E:\Visual Studio 2013\Projects\SteamTradingCardsFarmer\SteamTradingCardsFarmer\o
 E:\Visual Studio 2013\Projects\SteamTradingCardsFarmer\SteamTradingCardsFarmer\obj\x86\Debug\SteamTradingCardsFarmer.exe
 E:\Visual Studio 2013\Projects\SteamTradingCardsFarmer\SteamTradingCardsFarmer\obj\x86\Debug\SteamTradingCardsFarmer.xml
 E:\Visual Studio 2013\Projects\SteamTradingCardsFarmer\SteamTradingCardsFarmer\obj\x86\Debug\SteamTradingCardsFarmer.pdb
-E:\Visual Studio 2013\Projects\SteamTradingCardsFarmer\SteamTradingCardsFarmer\bin\Debug\SteamTradingCardsFarmer.pdb
-E:\Visual Studio 2013\Projects\SteamTradingCardsFarmer\SteamTradingCardsFarmer\bin\Debug\SteamTradingCardsFarmer.xml

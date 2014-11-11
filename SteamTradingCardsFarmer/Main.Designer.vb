@@ -40,7 +40,9 @@ Partial Class Main
         Me.ButtonClipboard = New System.Windows.Forms.Button()
         Me.TabControlMain = New System.Windows.Forms.TabControl()
         Me.TabPageHome = New System.Windows.Forms.TabPage()
+        Me.PanelLoading = New System.Windows.Forms.Panel()
         Me.LabelLoading = New System.Windows.Forms.Label()
+        Me.ProgressBarLoading = New System.Windows.Forms.ProgressBar()
         Me.GroupBoxSource = New System.Windows.Forms.GroupBox()
         Me.ButtonClear = New System.Windows.Forms.Button()
         Me.GroupBoxSelection = New System.Windows.Forms.GroupBox()
@@ -61,7 +63,7 @@ Partial Class Main
         Me.TabPageAbout = New System.Windows.Forms.TabPage()
         Me.LinkLabelDownload = New System.Windows.Forms.LinkLabel()
         Me.LabelGithub = New System.Windows.Forms.Label()
-        Me.LinkLabelGtihub = New System.Windows.Forms.LinkLabel()
+        Me.LinkLabelGithub = New System.Windows.Forms.LinkLabel()
         Me.LabelSAM = New System.Windows.Forms.Label()
         Me.LinkLabelSAM = New System.Windows.Forms.LinkLabel()
         Me.LabelBlog = New System.Windows.Forms.Label()
@@ -81,11 +83,10 @@ Partial Class Main
         Me.ToolTipProfile = New System.Windows.Forms.ToolTip(Me.components)
         Me.ToolTipClear = New System.Windows.Forms.ToolTip(Me.components)
         Me.ToolTipClipboard = New System.Windows.Forms.ToolTip(Me.components)
-        Me.ProgressBarLoading = New System.Windows.Forms.ProgressBar()
-        Me.PanelLoading = New System.Windows.Forms.Panel()
         Me.Form1BindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.TabControlMain.SuspendLayout()
         Me.TabPageHome.SuspendLayout()
+        Me.PanelLoading.SuspendLayout()
         Me.GroupBoxSource.SuspendLayout()
         Me.GroupBoxSelection.SuspendLayout()
         Me.GroupBoxInfo.SuspendLayout()
@@ -93,7 +94,6 @@ Partial Class Main
         Me.TabPageAbout.SuspendLayout()
         Me.TabPageLog.SuspendLayout()
         CType(Me.dgvLog, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelLoading.SuspendLayout()
         CType(Me.Form1BindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -149,11 +149,26 @@ Partial Class Main
         Me.TabPageHome.Name = "TabPageHome"
         Me.TabPageHome.UseVisualStyleBackColor = True
         '
+        'PanelLoading
+        '
+        Me.PanelLoading.BackColor = System.Drawing.Color.White
+        Me.PanelLoading.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.PanelLoading.Controls.Add(Me.LabelLoading)
+        Me.PanelLoading.Controls.Add(Me.ProgressBarLoading)
+        resources.ApplyResources(Me.PanelLoading, "PanelLoading")
+        Me.PanelLoading.Name = "PanelLoading"
+        '
         'LabelLoading
         '
         Me.LabelLoading.BackColor = System.Drawing.Color.Transparent
         resources.ApplyResources(Me.LabelLoading, "LabelLoading")
         Me.LabelLoading.Name = "LabelLoading"
+        '
+        'ProgressBarLoading
+        '
+        Me.ProgressBarLoading.ForeColor = System.Drawing.Color.White
+        resources.ApplyResources(Me.ProgressBarLoading, "ProgressBarLoading")
+        Me.ProgressBarLoading.Name = "ProgressBarLoading"
         '
         'GroupBoxSource
         '
@@ -233,7 +248,7 @@ Partial Class Main
         Me.dgvList.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
         DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("微软雅黑", 9.0!)
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("微软雅黑", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
         DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.dgvList.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         resources.ApplyResources(Me.dgvList, "dgvList")
@@ -245,7 +260,7 @@ Partial Class Main
         Me.dgvList.Name = "dgvList"
         Me.dgvList.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.[Single]
         DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle6.Font = New System.Drawing.Font("微软雅黑", 9.0!)
+        DataGridViewCellStyle6.Font = New System.Drawing.Font("微软雅黑", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
         DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.dgvList.RowHeadersDefaultCellStyle = DataGridViewCellStyle6
         Me.dgvList.RowHeadersVisible = False
@@ -323,7 +338,7 @@ Partial Class Main
         '
         Me.TabPageAbout.Controls.Add(Me.LinkLabelDownload)
         Me.TabPageAbout.Controls.Add(Me.LabelGithub)
-        Me.TabPageAbout.Controls.Add(Me.LinkLabelGtihub)
+        Me.TabPageAbout.Controls.Add(Me.LinkLabelGithub)
         Me.TabPageAbout.Controls.Add(Me.LabelSAM)
         Me.TabPageAbout.Controls.Add(Me.LinkLabelSAM)
         Me.TabPageAbout.Controls.Add(Me.LabelBlog)
@@ -347,11 +362,11 @@ Partial Class Main
         resources.ApplyResources(Me.LabelGithub, "LabelGithub")
         Me.LabelGithub.Name = "LabelGithub"
         '
-        'LinkLabelGtihub
+        'LinkLabelGithub
         '
-        resources.ApplyResources(Me.LinkLabelGtihub, "LinkLabelGtihub")
-        Me.LinkLabelGtihub.Name = "LinkLabelGtihub"
-        Me.LinkLabelGtihub.TabStop = True
+        resources.ApplyResources(Me.LinkLabelGithub, "LinkLabelGithub")
+        Me.LinkLabelGithub.Name = "LinkLabelGithub"
+        Me.LinkLabelGithub.TabStop = True
         '
         'LabelSAM
         '
@@ -414,7 +429,7 @@ Partial Class Main
         Me.dgvLog.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
         DataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle7.Font = New System.Drawing.Font("微软雅黑", 9.0!)
+        DataGridViewCellStyle7.Font = New System.Drawing.Font("微软雅黑", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
         DataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText
         DataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight
         DataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText
@@ -472,29 +487,14 @@ Partial Class Main
         Me.CheckBoxWebListener.Name = "CheckBoxWebListener"
         Me.CheckBoxWebListener.UseVisualStyleBackColor = True
         '
-        'ProgressBarLoading
-        '
-        Me.ProgressBarLoading.ForeColor = System.Drawing.Color.White
-        resources.ApplyResources(Me.ProgressBarLoading, "ProgressBarLoading")
-        Me.ProgressBarLoading.Name = "ProgressBarLoading"
-        '
-        'PanelLoading
-        '
-        Me.PanelLoading.BackColor = System.Drawing.Color.White
-        Me.PanelLoading.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.PanelLoading.Controls.Add(Me.LabelLoading)
-        Me.PanelLoading.Controls.Add(Me.ProgressBarLoading)
-        resources.ApplyResources(Me.PanelLoading, "PanelLoading")
-        Me.PanelLoading.Name = "PanelLoading"
-        '
         'Form1BindingSource
         '
         Me.Form1BindingSource.DataSource = GetType(SteamTradingCardsFarmer.Main)
         '
         'Main
         '
+        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
         resources.ApplyResources(Me, "$this")
-        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.Controls.Add(Me.CheckBoxWebListener)
         Me.Controls.Add(Me.TabControlMain)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
@@ -503,6 +503,7 @@ Partial Class Main
         Me.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide
         Me.TabControlMain.ResumeLayout(False)
         Me.TabPageHome.ResumeLayout(False)
+        Me.PanelLoading.ResumeLayout(False)
         Me.GroupBoxSource.ResumeLayout(False)
         Me.GroupBoxSelection.ResumeLayout(False)
         Me.GroupBoxInfo.ResumeLayout(False)
@@ -512,7 +513,6 @@ Partial Class Main
         Me.TabPageAbout.PerformLayout()
         Me.TabPageLog.ResumeLayout(False)
         CType(Me.dgvLog, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelLoading.ResumeLayout(False)
         CType(Me.Form1BindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -555,7 +555,7 @@ Partial Class Main
     Friend WithEvents DataGridViewTextBoxColumn4 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents ButtonClear As System.Windows.Forms.Button
     Friend WithEvents LabelGithub As System.Windows.Forms.Label
-    Friend WithEvents LinkLabelGtihub As System.Windows.Forms.LinkLabel
+    Friend WithEvents LinkLabelGithub As System.Windows.Forms.LinkLabel
     Friend WithEvents LinkLabelDownload As System.Windows.Forms.LinkLabel
     Friend WithEvents ColFarming As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents ColCheckbox As System.Windows.Forms.DataGridViewCheckBoxColumn

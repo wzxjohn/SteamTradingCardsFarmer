@@ -123,7 +123,7 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="ButtonSelect.Font" type="System.Drawing.Font, System.Drawing">
-    <value>微软雅黑, 9pt</value>
+    <value>微软雅黑, 12px</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="ButtonSelect.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
@@ -157,7 +157,7 @@
     <value>False</value>
   </data>
   <data name="ButtonUnselect.Font" type="System.Drawing.Font, System.Drawing">
-    <value>微软雅黑, 9pt</value>
+    <value>微软雅黑, 12px</value>
   </data>
   <data name="ButtonUnselect.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -190,7 +190,7 @@
     <value>False</value>
   </data>
   <data name="ButtonInverse.Font" type="System.Drawing.Font, System.Drawing">
-    <value>微软雅黑, 9pt</value>
+    <value>微软雅黑, 12px</value>
   </data>
   <data name="ButtonInverse.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -220,7 +220,7 @@
     <value>1</value>
   </data>
   <data name="ButtonProfile.Font" type="System.Drawing.Font, System.Drawing">
-    <value>微软雅黑, 9pt</value>
+    <value>微软雅黑, 12px</value>
   </data>
   <data name="ButtonProfile.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -250,7 +250,7 @@
     <value>1</value>
   </data>
   <data name="ButtonClipboard.Font" type="System.Drawing.Font, System.Drawing">
-    <value>微软雅黑, 9pt</value>
+    <value>微软雅黑, 12px</value>
   </data>
   <data name="ButtonClipboard.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -278,6 +278,9 @@
   </data>
   <data name="&gt;&gt;ButtonClipboard.ZOrder" xml:space="preserve">
     <value>2</value>
+  </data>
+  <data name="LabelLoading.Font" type="System.Drawing.Font, System.Drawing">
+    <value>微软雅黑, 12px</value>
   </data>
   <data name="LabelLoading.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -359,7 +362,7 @@ If program have no response for a long time, restart and try again.</value>
     <value>0</value>
   </data>
   <data name="ButtonClear.Font" type="System.Drawing.Font, System.Drawing">
-    <value>微软雅黑, 9pt</value>
+    <value>微软雅黑, 12px</value>
   </data>
   <data name="ButtonClear.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -388,6 +391,9 @@ If program have no response for a long time, restart and try again.</value>
   <data name="&gt;&gt;ButtonClear.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="GroupBoxSource.Font" type="System.Drawing.Font, System.Drawing">
+    <value>微软雅黑, 12px</value>
+  </data>
   <data name="GroupBoxSource.Location" type="System.Drawing.Point, System.Drawing">
     <value>583, 101</value>
   </data>
@@ -411,6 +417,9 @@ If program have no response for a long time, restart and try again.</value>
   </data>
   <data name="&gt;&gt;GroupBoxSource.ZOrder" xml:space="preserve">
     <value>1</value>
+  </data>
+  <data name="GroupBoxSelection.Font" type="System.Drawing.Font, System.Drawing">
+    <value>微软雅黑, 12px</value>
   </data>
   <data name="GroupBoxSelection.Location" type="System.Drawing.Point, System.Drawing">
     <value>480, 101</value>
@@ -440,7 +449,7 @@ If program have no response for a long time, restart and try again.</value>
     <value>False</value>
   </data>
   <data name="ButtonStartStop.Font" type="System.Drawing.Font, System.Drawing">
-    <value>微软雅黑, 9pt, style=Bold</value>
+    <value>微软雅黑, 12px, style=Bold</value>
   </data>
   <data name="ButtonStartStop.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -473,7 +482,7 @@ If program have no response for a long time, restart and try again.</value>
     <value>False</value>
   </data>
   <data name="LinkLabelSCE.Font" type="System.Drawing.Font, System.Drawing">
-    <value>微软雅黑, 9pt</value>
+    <value>微软雅黑, 11px</value>
   </data>
   <data name="LinkLabelSCE.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -509,7 +518,7 @@ If program have no response for a long time, restart and try again.</value>
     <value>True</value>
   </data>
   <data name="LabelGamesTitle.Font" type="System.Drawing.Font, System.Drawing">
-    <value>微软雅黑, 9pt</value>
+    <value>微软雅黑, 12px</value>
   </data>
   <data name="LabelGamesTitle.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -542,7 +551,7 @@ If program have no response for a long time, restart and try again.</value>
     <value>True</value>
   </data>
   <data name="LabelCardsTitle.Font" type="System.Drawing.Font, System.Drawing">
-    <value>微软雅黑, 9pt</value>
+    <value>微软雅黑, 12px</value>
   </data>
   <data name="LabelCardsTitle.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -572,7 +581,7 @@ If program have no response for a long time, restart and try again.</value>
     <value>2</value>
   </data>
   <data name="LabelGames.Font" type="System.Drawing.Font, System.Drawing">
-    <value>微软雅黑, 9pt</value>
+    <value>微软雅黑, 12px</value>
   </data>
   <data name="LabelGames.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -605,7 +614,7 @@ If program have no response for a long time, restart and try again.</value>
     <value>3</value>
   </data>
   <data name="LabelCards.Font" type="System.Drawing.Font, System.Drawing">
-    <value>微软雅黑, 9pt</value>
+    <value>微软雅黑, 12px</value>
   </data>
   <data name="LabelCards.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -829,34 +838,34 @@ If program have no response for a long time, restart and try again.</value>
   <data name="&gt;&gt;LabelGithub.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="LinkLabelGtihub.AutoSize" type="System.Boolean, mscorlib">
+  <data name="LinkLabelGithub.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="LinkLabelGtihub.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="LinkLabelGithub.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="LinkLabelGtihub.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="LinkLabelGithub.Location" type="System.Drawing.Point, System.Drawing">
     <value>227, 200</value>
   </data>
-  <data name="LinkLabelGtihub.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="LinkLabelGithub.Size" type="System.Drawing.Size, System.Drawing">
     <value>338, 17</value>
   </data>
-  <data name="LinkLabelGtihub.TabIndex" type="System.Int32, mscorlib">
+  <data name="LinkLabelGithub.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
   </data>
-  <data name="LinkLabelGtihub.Text" xml:space="preserve">
+  <data name="LinkLabelGithub.Text" xml:space="preserve">
     <value>http://github.com/neverweep/SteamTradingCardsFarmer</value>
   </data>
-  <data name="&gt;&gt;LinkLabelGtihub.Name" xml:space="preserve">
-    <value>LinkLabelGtihub</value>
+  <data name="&gt;&gt;LinkLabelGithub.Name" xml:space="preserve">
+    <value>LinkLabelGithub</value>
   </data>
-  <data name="&gt;&gt;LinkLabelGtihub.Type" xml:space="preserve">
+  <data name="&gt;&gt;LinkLabelGithub.Type" xml:space="preserve">
     <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;LinkLabelGtihub.Parent" xml:space="preserve">
+  <data name="&gt;&gt;LinkLabelGithub.Parent" xml:space="preserve">
     <value>TabPageAbout</value>
   </data>
-  <data name="&gt;&gt;LinkLabelGtihub.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;LinkLabelGithub.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
   <data name="LabelSAM.AutoSize" type="System.Boolean, mscorlib">
@@ -1194,7 +1203,7 @@ If program have no response for a long time, restart and try again.</value>
     <value>2</value>
   </data>
   <data name="TabControlMain.Font" type="System.Drawing.Font, System.Drawing">
-    <value>微软雅黑, 9pt</value>
+    <value>微软雅黑, 12px</value>
   </data>
   <data name="TabControlMain.ItemSize" type="System.Drawing.Size, System.Drawing">
     <value>150, 25</value>
@@ -1283,9 +1292,6 @@ If program have no response for a long time, restart and try again.</value>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 12</value>
-  </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>773, 322</value>
   </data>
@@ -1364,6 +1370,9 @@ If program have no response for a long time, restart and try again.</value>
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=
 </value>
+  </data>
+  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterScreen</value>
