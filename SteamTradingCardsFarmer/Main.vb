@@ -620,8 +620,11 @@ Public Class Main
                 Dim httpURL As New System.Uri(badgesURL & "/?p=" & pageNum)
                 httpReq = CType(WebRequest.Create(httpURL), HttpWebRequest)
                 httpReq.CookieContainer = cookieContainer '将之前获得的cookie加入到http请求中
+                httpReq.UserAgent = "Mozilla/5.0 (Windows NT 5.1; en-US) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.101 Safari/537.36"
                 httpReq.Timeout = 30000 '将超时设置为30秒
                 httpReq.Method = "GET"
+                httpReq.AllowAutoRedirect = True
+                httpReq.Referer = "http://steamcommunity.com/"
                 httpResp = CType(httpReq.GetResponse(), HttpWebResponse)
                 httpReq.KeepAlive = False
                 Dim reader As StreamReader = New StreamReader(httpResp.GetResponseStream, System.Text.Encoding.UTF8) '这里将编码设置成为UTF-8，避免特殊符号乱码

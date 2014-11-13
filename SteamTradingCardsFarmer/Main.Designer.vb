@@ -84,6 +84,7 @@ Partial Class Main
         Me.ToolTipClear = New System.Windows.Forms.ToolTip(Me.components)
         Me.ToolTipClipboard = New System.Windows.Forms.ToolTip(Me.components)
         Me.Form1BindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.TabControlMain.SuspendLayout()
         Me.TabPageHome.SuspendLayout()
         Me.PanelLoading.SuspendLayout()
@@ -491,10 +492,16 @@ Partial Class Main
         '
         Me.Form1BindingSource.DataSource = GetType(SteamTradingCardsFarmer.Main)
         '
+        'TextBox1
+        '
+        resources.ApplyResources(Me.TextBox1, "TextBox1")
+        Me.TextBox1.Name = "TextBox1"
+        '
         'Main
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
         resources.ApplyResources(Me, "$this")
+        Me.Controls.Add(Me.TextBox1)
         Me.Controls.Add(Me.CheckBoxWebListener)
         Me.Controls.Add(Me.TabControlMain)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
@@ -569,5 +576,6 @@ Partial Class Main
     Friend WithEvents ToolTipClipboard As System.Windows.Forms.ToolTip
     Friend WithEvents ProgressBarLoading As System.Windows.Forms.ProgressBar
     Friend WithEvents PanelLoading As System.Windows.Forms.Panel
+    Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
 
 End Class
